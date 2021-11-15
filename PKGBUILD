@@ -4,15 +4,16 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux516
-pkgname=('linux515' 'linux515-headers')
-_kernelname=-MANJARO
 _basekernel=5.16
-_basever=516
 _rc=rc1
 _commit=fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf
-pkgver=5.16rc1.211115.gfa55b7d
 pkgrel=1
+
+_basever=${_basekernel//.}
+_kernelname=-MANJARO
+pkgbase=linux${_basever}
+pkgname=("$pkgbase" "$pkgbase-headers")
+pkgver=5.16rc1.211115.gfa55b7d
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
