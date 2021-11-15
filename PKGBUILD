@@ -11,7 +11,7 @@ _basekernel=5.16
 _basever=516
 _rc=rc1
 _commit=fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf
-pkgver=5.16.rc1.211115.gfa55b7d
+pkgver=5.16rc1.211115.gfa55b7d
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -65,14 +65,14 @@ source=("https://codeload.github.com/torvalds/linux/zip/$_commit"
 #        '0413-bootsplash.gitpatch'
         )
 sha256sums=('cc38ca61b94b5663bf5964ed82e7d9eb5090c4a3b03ae6d86d235671bec47470'
-            'a3b9421b588e3c118e39aa356bb707c0f709f74ebedb4b21c9f6079f5a49e410'
+            '4891b6e754ee1bd7e0f6faa62de9d092ed056d03165d96cba9917de82f26b75e'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b')
 
 pkgver() {
-  printf %s.%s.%s.g%s "$_basekernel" "$_rc" "$(date +%y%m%d)" "${_commit:0:7}"
+  printf %s%s.%s.g%s "$_basekernel" "$_rc" "$(date +%y%m%d)" "${_commit:0:7}"
 }
 
 prepare() {
