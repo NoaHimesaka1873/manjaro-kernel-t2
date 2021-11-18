@@ -230,6 +230,9 @@ package_linux516-headers() {
 
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "${_builddir}/tools/objtool" tools/objtool/objtool
+  
+  # https://forum.manjaro.org/t/90629/39
+  install -Dt "${_builddir}/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
   # remove unneeded architectures
   local _arch
