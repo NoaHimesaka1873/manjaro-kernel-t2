@@ -5,15 +5,15 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 _basekernel=5.16
-_rc=rc1
-_commit=fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf
+_rc=rc2
+_commit=136057256686de39cc3a07c2e39ef6bc43003ff6
 pkgrel=1
 
 _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=5.16rc1.211115.gfa55b7d
+pkgver=5.16rc2.211121.g1360572
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -65,7 +65,7 @@ source=("https://codeload.github.com/torvalds/linux/zip/$_commit"
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch'
         )
-sha256sums=('cc38ca61b94b5663bf5964ed82e7d9eb5090c4a3b03ae6d86d235671bec47470'
+sha256sums=('297f7e51ba2e888d99c3b34b7377950a6510e02283e392e5a4905b7f37453a2d'
             '680e69493059a627ad5900f35dbe61f98373ebee8694878a9288a9172f3bc951'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
