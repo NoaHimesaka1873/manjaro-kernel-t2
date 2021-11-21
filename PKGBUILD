@@ -66,7 +66,7 @@ source=("https://codeload.github.com/torvalds/linux/zip/$_commit"
         '0413-bootsplash.gitpatch'
         )
 sha256sums=('297f7e51ba2e888d99c3b34b7377950a6510e02283e392e5a4905b7f37453a2d'
-            '680e69493059a627ad5900f35dbe61f98373ebee8694878a9288a9172f3bc951'
+            'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
