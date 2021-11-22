@@ -30,7 +30,7 @@ makedepends=('bc'
     'tar'
     'xz')
 options=('!strip')
-source=("https://codeload.github.com/torvalds/linux/zip/$_commit"
+source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$_commit"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
@@ -48,9 +48,10 @@ source=("https://codeload.github.com/torvalds/linux/zip/$_commit"
 #        '0201-lenovo-wmi2.patch'
         # other patches
         # Bootsplash
-        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'        
-        '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
-        '0303-revert-fbcon-remove-soft-scrollback-code.patch'
+        '0301-revert-garbage-collect-fbdev-scrolling-acceleration.patch'
+        '0302-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'        
+        '0303-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
+        '0304-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
         '0402-bootsplash.patch'
         '0403-bootsplash.patch'
@@ -71,9 +72,10 @@ sha256sums=('297f7e51ba2e888d99c3b34b7377950a6510e02283e392e5a4905b7f37453a2d'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
+            '365d4225a7db60bd064ebbc34ce0ae582a0c378ad6c4cec7960a5ae4641a6757'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
-            'ef756074a12f4d79a5525c8da4ce35ec7118be276ac8e67776d23c8cc392cb79'
+            '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
             'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
