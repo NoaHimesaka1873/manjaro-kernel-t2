@@ -5,30 +5,19 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 _basekernel=5.16
-_rc=rc2
-_commit=136057256686de39cc3a07c2e39ef6bc43003ff6
+_rc=rc3
+_commit=d58071a8a76d779eedab38033ae4c821c30295a5
 pkgrel=1
 
 _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=5.16rc2.211121.g1360572
+pkgver=5.16rc3.211129.gd58071a
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
-makedepends=('bc'
-    'docbook-xsl'
-    'libelf'
-    'pahole'
-    'git'
-    'inetutils'
-    'kmod'
-    'xmlto'
-    'cpio'
-    'perl'
-    'tar'
-    'xz')
+makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$_commit"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
@@ -49,7 +38,7 @@ source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$
         # other patches
         # Bootsplash
         '0301-revert-garbage-collect-fbdev-scrolling-acceleration.patch'
-        '0302-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'        
+        '0302-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0303-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0304-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
@@ -66,7 +55,7 @@ source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch'
         )
-sha256sums=('297f7e51ba2e888d99c3b34b7377950a6510e02283e392e5a4905b7f37453a2d'
+sha256sums=('b6491947c1c8354fbc2e1f055bfa3ed9862057d47e55ca23b6b923cd018819d1'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
@@ -199,7 +188,7 @@ package_linux516-headers() {
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
   install -Dt "${_builddir}/kernel" -m644 kernel/Makefile
-  install -Dt "${_builddir}" -m644 vmlinux  
+  install -Dt "${_builddir}" -m644 vmlinux
 
   mkdir "${_builddir}/.tmp_versions"
 
@@ -232,7 +221,7 @@ package_linux516-headers() {
 
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "${_builddir}/tools/objtool" tools/objtool/objtool
-  
+
   # https://forum.manjaro.org/t/90629/39
   install -Dt "${_builddir}/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
@@ -261,7 +250,7 @@ package_linux516-headers() {
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
   strip $STRIP_STATIC "${_builddir}/vmlinux"
-  
+
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
 }
