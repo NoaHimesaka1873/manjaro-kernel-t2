@@ -13,7 +13,7 @@ _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=5.16rc6.211220.ga7904a5
+pkgver=5.16rc6.211230.ga7904a5
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -29,13 +29,11 @@ source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$
         # Temp Fixes
         # MANJARO Patches
         '0101-i2c-nuvoton-nc677x-hwmon-driver.patch'
-##        '0102-iomap-iomap_bmap-should-accept-unwritten-maps.patch'
-##        '0103-futex.patch'
+#        '0102-iomap-iomap_bmap-should-accept-unwritten-maps.patch'
 #        '0104-revert-xhci-Add-support-for-Renesas-controller-with-memory.patch'
         '0105-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
         # Lenovo + AMD
 #        '0201-lenovo-wmi2.patch'
-        # other patches
         # Bootsplash
         '0301-revert-garbage-collect-fbdev-scrolling-acceleration.patch'
         '0302-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
