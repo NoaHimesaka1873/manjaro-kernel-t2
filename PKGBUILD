@@ -5,22 +5,18 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 _basekernel=5.16
-_rc=rc8
-_commit=c9e6606c7fe92b50a02ce51dda82586ebdf99b48
-pkgrel=1
-
 _basever=${_basekernel//.}
-_kernelname=-MANJARO
 pkgbase=linux${_basever}
+_kernelname=-MANJARO
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=5.16rc6.211230.ga7904a5
+pkgver=$_basekernel.0
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$_commit"
-        #"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
@@ -51,9 +47,8 @@ source=("linux516-$_commit.zip::https://codeload.github.com/torvalds/linux/zip/$
         '0410-bootsplash.patch'
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
-        '0413-bootsplash.gitpatch'
-        )
-sha256sums=('SKIP'
+        '0413-bootsplash.gitpatch')
+sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
@@ -77,13 +72,8 @@ sha256sums=('SKIP'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
-pkgver() {
-  printf %s%s.%s.g%s "$_basekernel" "$_rc" "$(date +%y%m%d)" "${_commit:0:7}"
-}
-
 prepare() {
-  cd linux-$_commit
-#  cd "linux-${_basekernel}"
+  cd "linux-${_basekernel}"
 
   # add upstream patch
 #  msg "add upstream patch"
@@ -127,8 +117,7 @@ prepare() {
 }
 
 build() {
-  cd linux-$_commit
-#  cd "linux-${_basekernel}"
+  cd "linux-${_basekernel}"
 
   msg "build"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -140,8 +129,7 @@ package_linux516() {
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd linux-$_commit
-#  cd "linux-${_basekernel}"
+  cd "linux-${_basekernel}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -180,8 +168,7 @@ package_linux516-headers() {
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
 
-  cd linux-$_commit
-#  cd "linux-${_basekernel}"
+  cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
