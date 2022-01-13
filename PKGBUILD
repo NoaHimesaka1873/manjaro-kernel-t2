@@ -25,7 +25,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         'config'
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
-        '0002-HID-quirks-Add-Apple-Magic-Trackpad-2-to-hid_have_special_driver-list.patch'
+        '0002-Btintel_Fix_bdaddress_comparison_with_garbage_value.patch'
         # Temp Fixes
         # MANJARO Patches
         '0101-i2c-nuvoton-nc677x-hwmon-driver.patch'
@@ -55,7 +55,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
-            'df5843818f1571841e1a8bdbe38d7f853d841f38de46d6a6a5765de089495578'
+            'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
             '365d4225a7db60bd064ebbc34ce0ae582a0c378ad6c4cec7960a5ae4641a6757'
