@@ -6,14 +6,14 @@
 
 _basekernel=5.16
 # Edit here:
-_patch=0
+_patch=1
 
 _basever=${_basekernel//.}
 pkgbase=linux${_basever}
 _kernelname=-MANJARO
 pkgname=("$pkgbase" "$pkgbase-headers")
 # Don't edit:
-pkgver=5.16.0
+pkgver=5.16.1
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -21,7 +21,7 @@ license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
-        #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
@@ -53,6 +53,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
 sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
+            '9ff97f3a01ec8744863ff611315c44c1f5d1ff551769f7d8359c85561dee1b1d'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
@@ -84,8 +85,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-#  msg "add upstream patch"
-#  patch -p1 -i "../patch-${pkgver}"
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
@@ -111,7 +112,7 @@ prepare() {
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
 
   # set patchlevel to 14
-  #sed -ri "s|^(PATCHLEVEL =).*|\1 14|" Makefile
+  sed -ri "s|^(PATCHLEVEL =).*|\1 14|" Makefile
 
   msg "don't run depmod on 'make install'"
   # We'll do this ourselves in packaging
