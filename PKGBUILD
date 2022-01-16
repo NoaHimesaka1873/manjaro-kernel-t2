@@ -111,9 +111,6 @@ prepare() {
   msg "set extraversion to pkgrel"
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
 
-  # set patchlevel to 14
-  sed -ri "s|^(PATCHLEVEL =).*|\1 14|" Makefile
-
   msg "don't run depmod on 'make install'"
   # We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
