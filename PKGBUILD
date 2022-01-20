@@ -4,17 +4,13 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
+pkgver=5.16.2
+pkgrel=1
 _basekernel=5.16
-# Edit here:
-_patch=1
-
 _basever=${_basekernel//.}
 pkgbase=linux${_basever}
 _kernelname=-MANJARO
 pkgname=("$pkgbase" "$pkgbase-headers")
-# Don't edit:
-pkgver=5.16.2
-pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -76,10 +72,6 @@ sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
-
-pkgver(){
-  echo $_basekernel.$_patch
-}
 
 prepare() {
   cd "linux-${_basekernel}"
