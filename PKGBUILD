@@ -118,8 +118,7 @@ build() {
   cd "kernel-t2-v5.16.7"
 
   msg "build"
-  msg "${MAKEFLAGS}"
-  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
+  make -${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
 package_linux516-t2() {
