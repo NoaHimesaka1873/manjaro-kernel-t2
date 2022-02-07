@@ -16,7 +16,7 @@ url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v{pkgver}.tar.gz"
+source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.gz"
         'config'
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
