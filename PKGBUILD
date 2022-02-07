@@ -16,8 +16,7 @@ url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v5.16.7.tar.gz"
-        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.gz"
         'config'
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
@@ -50,7 +49,6 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v5.16.7.tar.gz"
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
 sha256sums=('SKIP'
-            '4dde3c76a012cf8b9de2fc2789671602644114e5b466299fd6ffff2baf63d4d8'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
@@ -79,8 +77,8 @@ prepare() {
   cd "kernel-t2-v5.16.7"
 
   # add upstream patch
-  msg "add upstream patch"
-  patch -p1 -i "../patch-${pkgver}"
+  # msg "add upstream patch"
+  # patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
