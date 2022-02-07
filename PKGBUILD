@@ -9,14 +9,14 @@ pkgrel=1
 _basekernel=5.16
 _basever=${_basekernel//.}
 pkgbase=linux${_basever}
-_kernelname=-MANJARO
+_kernelname=-t2-MANJARO
 pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
+source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v5.16.7.tar.gz"
         "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
@@ -49,7 +49,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
-sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
+sha256sums=('SKIP'
             '4dde3c76a012cf8b9de2fc2789671602644114e5b466299fd6ffff2baf63d4d8'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
@@ -76,7 +76,7 @@ sha256sums=('027d7e8988bb69ac12ee92406c3be1fe13f990b1ca2249e226225cd1573308bb'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v5.16.7"
 
   # add upstream patch
   msg "add upstream patch"
@@ -117,7 +117,7 @@ prepare() {
 }
 
 build() {
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v5.16.7"
 
   msg "build"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -129,7 +129,7 @@ package_linux516() {
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v5.16.7"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -168,7 +168,7 @@ package_linux516-headers() {
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
 
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v5.16.7"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
