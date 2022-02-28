@@ -21,7 +21,11 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
         '0002-Btintel_Fix_bdaddress_comparison_with_garbage_value.patch'
-        '0003-Bt_Read_codec_capabilities_only_if_supported.patch'
+        '0003_Bluetooth_Read_codec_capabilities_only_if_supported.patch'
+        '0004_Bluetooth_fix_deadlock_for_RFCOMM_sk_state_change.patch'
+        '0005_mt76_mt7921_add_support_for_PCIe_ID_0x0608-0x0616.patch'
+        '0006_mt76_mt7921_reduce_log_severity_levels_for_informative_messages.patch'
+        '0007_Revert_NFSv4.1_query_for_fs_location_attr_on_a_new_file_system.patch'
         # Temp Fixes
         # MANJARO Patches
         '0101-i2c-nuvoton-nc677x-hwmon-driver.patch'
@@ -31,10 +35,9 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         # Lenovo + AMD
 #        '0201-lenovo-wmi2.patch'
         # Bootsplash
-        '0301-revert-garbage-collect-fbdev-scrolling-acceleration.patch'
-        '0302-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
-        '0303-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
-        '0304-revert-fbcon-remove-soft-scrollback-code.patch'
+        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
+        '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
+        '0303-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
         '0402-bootsplash.patch'
         '0403-bootsplash.patch'
@@ -52,10 +55,13 @@ sha256sums=('SKIP'
             'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
-            'f0eaa81deb5428c41d2f0b09e79a2860931e4a48a368e965172150a20fa2fa62'
+            'adfabecb2e23cfaebe1d493a54119a967a97930dac677e20f26d4bcaa1b80f3c'
+            '7aa2293dff32463665c2a35054c5164470e24075ddda181715d4079ca126cbbd'
+            '9c67c62e9e744eaeae43c80d83c9eb61b486406cf18cd057427bdbc44f8e4e10'
+            'f8fc51c0c644ae743154c37b77ade50fa5a950980c9dd56d8752e4d6b5dfb153'
+            '24fc6f087aa82a72905f0fb6b9f3f5f18741187d5a425f5ec845dab436ab1c58'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
-            '365d4225a7db60bd064ebbc34ce0ae582a0c378ad6c4cec7960a5ae4641a6757'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
@@ -115,7 +121,7 @@ prepare() {
 }
 
 build() {
-  cd "kernel-t2-v5.16.7"
+  cd "kernel-t2-v$pkgver"
 
   msg "build"
   make -${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -127,7 +133,7 @@ package_linux516-t2() {
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd "kernel-t2-v5.16.7"
+  cd "kernel-t2-v$pkgver"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -166,7 +172,7 @@ package_linux516-t2-headers() {
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
 
-  cd "kernel-t2-v5.16.7"
+  cd "kernel-t2-v$pkgver"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers

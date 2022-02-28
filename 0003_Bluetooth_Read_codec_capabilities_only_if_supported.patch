@@ -1,4 +1,4 @@
-From db630084616f69bc7022582c6fd3d6ed5cfcdc17 Mon Sep 17 00:00:00 2001
+From 002d105f8a78b19624fc5e3eccbb77af8b1a3a77 Mon Sep 17 00:00:00 2001
 From: Kiran K <kiran.k@intel.com>
 Date: Tue, 5 Oct 2021 20:15:56 +0530
 Subject: [PATCH] Bluetooth: Read codec capabilities only if supported
@@ -30,11 +30,11 @@ index f0421d0edaa377..38201532f58e82 100644
  		memcpy(entry->caps, caps, len);
 +	}
  	list_add(&entry->list, list);
- 
+
  	return 0;
 @@ -58,6 +60,18 @@ static void hci_read_codec_capabilities(struct hci_dev *hdev, __u8 transport,
  			__u32 len;
- 
+
  			cmd->transport = i;
 +
 +			/* If Read_Codec_Capabilities command is not supported
@@ -51,3 +51,4 @@ index f0421d0edaa377..38201532f58e82 100644
  			skb = __hci_cmd_sync(hdev, HCI_OP_READ_LOCAL_CODEC_CAPS,
  					     sizeof(*cmd), cmd,
  					     HCI_CMD_TIMEOUT);
+
