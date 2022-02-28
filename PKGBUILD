@@ -4,13 +4,13 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.16.7
+pkgver=5.16.11
 pkgrel=1
 _basekernel=5.16
 _basever=${_basekernel//.}
-pkgbase=linux${_basever}
-_kernelname=-t2-MANJARO
-pkgname=("$pkgbase-t2" "$pkgbase-t2-headers")
+pkgbase=linux${_basever}-t2
+_kernelname=-MANJARO
+pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
