@@ -74,7 +74,7 @@ sha256sums=('SKIP'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
-  cd "kernel-t2-v5.16.7"
+  cd "kernel-t2-v$pkgver"
 
   # add upstream patch
   # msg "add upstream patch"
