@@ -52,7 +52,7 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
 sha256sums=('SKIP'
-            'cb2d729cc20743014d9e3bd08facb9f5bdd19d9fa89014f415c61b4a6eb78e97'
+            '12ae6d7ceb35c714fec59a11a2e3d3b57168d67e24b431bae1f0de7305518d9d'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
             'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
             'adfabecb2e23cfaebe1d493a54119a967a97930dac677e20f26d4bcaa1b80f3c'
