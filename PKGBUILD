@@ -105,7 +105,7 @@ sha256sums=('SKIP'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
-  cd "linux-t2-v${pkgver}"
+  cd "kernel-t2-v${pkgver}"
 
   for i in apple-bce apple-ibridge; do
     echo "Copying $i in to drivers/staging..."
