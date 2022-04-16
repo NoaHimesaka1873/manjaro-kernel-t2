@@ -73,7 +73,7 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         '1001-Put-apple-bce-and-apple-ibridge-in-drivers-staging.patch'
         '1002-add-modalias-to-apple-bce.patch')
 sha256sums=('SKIP'
-            '15caed316b86dad46e6c41fa6c31691131a9184b463c91e6b5a378824367b0c2'
+            'SKIP'
             'SKIP'
             'SKIP'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
