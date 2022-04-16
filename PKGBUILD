@@ -4,38 +4,56 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.16.11.a
+pkgbase=linux515-t2
+pkgname=('linux515-t2' 'linux515-t2-headers')
+_kernelname=-MANJAROT2-YURUYURI
+_basekernel=5.15
+_basever=515
+pkgver=5.15.32
 pkgrel=1
-_basekernel=5.16
-_basever=${_basekernel//.}
-pkgbase=linux${_basever}-t2
-_kernelname=-MANJARO
-pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
-makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
+makedepends=('bc'
+    'docbook-xsl'
+    'libelf'
+    'pahole'
+    'git'
+    'inetutils'
+    'kmod'
+    'xmlto'
+    'cpio'
+    'perl'
+    'tar'
+    'xz')
 options=('!strip')
 source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.gz"
         'config'
+        # t2linux Patches
+        apple-bce::git+https://github.com/t2linux/apple-bce-drv#commit=f93c6566f98b3c95677de8010f7445fa19f75091
+        # Redecorating fork has kbd bl working on mbp16,*. Code quality of those changes could be better.
+        apple-ibridge::git+https://github.com/Redecorating/apple-ib-drv#commit=467df9b11cb55456f0365f40dd11c9e666623bf3
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
-        '0002-Btintel_Fix_bdaddress_comparison_with_garbage_value.patch'
-        '0003_Bluetooth_Read_codec_capabilities_only_if_supported.patch'
-        '0004_Bluetooth_fix_deadlock_for_RFCOMM_sk_state_change.patch'
-        '0005_mt76_mt7921_add_support_for_PCIe_ID_0x0608-0x0616.patch'
-        '0006_mt76_mt7921_reduce_log_severity_levels_for_informative_messages.patch'
-        '0007_Revert_NFSv4.1_query_for_fs_location_attr_on_a_new_file_system.patch'
-        # Temp Fixes
+        '0002-PCI_Add_more_NVIDIA_controllers_to_the_MSI_masking_quirk.patch'
+        '0003-iommu_intel_do_deep_dma-unmapping_to_avoid_kernel-flooding.patch'
+        '0004-cpufreq_intel_pstate_ITMT_support_for_overclocked_system.patch'
+        '0005-Bluetooth_btintel_Fix_bdaddress_comparison_with_garbage_value.patch'
+        '0006-lg-laptop_Recognize_more_models.patch'
         # MANJARO Patches
         '0101-i2c-nuvoton-nc677x-hwmon-driver.patch'
 #        '0102-iomap-iomap_bmap-should-accept-unwritten-maps.patch'
-#        '0104-revert-xhci-Add-support-for-Renesas-controller-with-memory.patch'
+        '0103-futex.patch' # https://github.com/sirlucjan/kernel-patches
+        '0104-revert-xhci-Add-support-for-Renesas-controller-with-memory.patch'
         '0105-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
+        '0108-drm_i915_Add_workaround_numbers_to_GEN7_COMMON_SLICE_CHICKEN1_whitelisting.patch::https://patchwork.freedesktop.org/patch/463650/raw/'
         # Lenovo + AMD
-#        '0201-lenovo-wmi2.patch'
+        '0201-lenovo-wmi2.patch'
+        # other patches
+        "0202-mt76-mt7921-add-support-for-PCIe-ID-0x7922-0x0608-0x0616.patch"
+        "0203_mt76_mt7921_reduce_log_severity_levels_for_informative_messages.patch"
         # Bootsplash
-        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
+        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'        
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0303-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
@@ -51,17 +69,24 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
-sha256sums=('SKIP'
-            '12ae6d7ceb35c714fec59a11a2e3d3b57168d67e24b431bae1f0de7305518d9d'
+sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8'
+            '15caed316b86dad46e6c41fa6c31691131a9184b463c91e6b5a378824367b0c2'
+            'SKIP'
+            'SKIP'
             '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
-            'b89188b1bc3516d54965dd36def6a2af3d81379e53ff7e527bbd91f77c6f191b'
-            'adfabecb2e23cfaebe1d493a54119a967a97930dac677e20f26d4bcaa1b80f3c'
-            '7aa2293dff32463665c2a35054c5164470e24075ddda181715d4079ca126cbbd'
-            '9c67c62e9e744eaeae43c80d83c9eb61b486406cf18cd057427bdbc44f8e4e10'
-            'f8fc51c0c644ae743154c37b77ade50fa5a950980c9dd56d8752e4d6b5dfb153'
-            '24fc6f087aa82a72905f0fb6b9f3f5f18741187d5a425f5ec845dab436ab1c58'
+            'e2823eff3355b7c88a3fa327ea2f84f23cbd36569e0a5f0f76599023f63a52ca'
+            'ce53090a4572cd6162d22225113082f7e4df5028a1230529d170460e26dcf849'
+            'ab0360eac59329eb84f028c2f402ee4a17e4b3dfacb7957355e6178d35af87b9'
+            '76701599bbafa49b90ccb073ef29ce2dc3731566e8fa852bd1e9e7796e184754'
+            'a2a0a0542055a6a921542fbb05cedb6eb6f3d3fb0c038bfb2304bfd3931a0f71'
             '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
+            '844e66a95d7df754c55ac2f1ce7e215b1e56e20ca095462d926a993d557b20e0'
+            'd9330ea593829a6ef3b824db9570253280cbff7da2b4beb47cbc037824d1a29b'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
+            'e8e6120035977903a7117ba215809b9b162b64a789848107513f219180baaada'
+            '1d58ef2991c625f6f0eb33b4cb8303932f53f1c4694e42bae24c9cd36d2ad013'
+            '04fd3142561aa3cd7f4e469099ae294b47b02f4a5b344ff7c813d8593eb634d8'
+            'f8fc51c0c644ae743154c37b77ade50fa5a950980c9dd56d8752e4d6b5dfb153'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
@@ -80,11 +105,18 @@ sha256sums=('SKIP'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
-  cd "kernel-t2-v$pkgver"
+  cd "linux-${_basekernel}"
+
+  for i in apple-bce apple-ibridge; do
+    echo "Copying $i in to drivers/staging..."
+	# no need to copy .git/
+	mkdir drivers/staging/$i
+    cp -r $srcdir/$i/* drivers/staging/$i/
+  done
 
   # add upstream patch
-  # msg "add upstream patch"
-  # patch -p1 -i "../patch-${pkgver}"
+  #msg "add upstream patch"
+  #patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
@@ -95,8 +127,8 @@ prepare() {
       patch -Np1 < "../$src"
   done
 
-#  msg2 "0513-bootsplash"
-#  git apply -p1 < "../0413-bootsplash.gitpatch"
+  msg2 "0513-bootsplash"
+  git apply -p1 < "../0413-bootsplash.gitpatch"
 
   msg2 "add config"
   cat "../config" > ./.config
@@ -121,19 +153,21 @@ prepare() {
 }
 
 build() {
-  cd "kernel-t2-v$pkgver"
+  cd "linux-${_basekernel}"
 
   msg "build"
-  make -${MAKEFLAGS} LOCALVERSION= bzImage modules
+  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux516-t2() {
+package_linux515() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
-  optdepends=('crda: to set the correct wireless channels of your country')
+  optdepends=('wireless-regdb: to set the correct wireless channels of your country')
+  conflicts=('apple-bce-dkms-git' 'apple-bce-git' 'apple-ibridge-dkms-git' 'apple-ibridge-git')
+  replaces=('linux57-mbp' 'linux56-mbp')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd "kernel-t2-v$pkgver"
+  cd "linux-${_basekernel}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -167,17 +201,18 @@ package_linux516-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux516-t2-headers() {
+package_linux515-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
+  replaces=('linux57-mbp-headers' 'linux56-mbp-headers')
   provides=("linux-headers=$pkgver")
 
-  cd "kernel-t2-v$pkgver"
+  cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
   install -Dt "${_builddir}/kernel" -m644 kernel/Makefile
-  install -Dt "${_builddir}" -m644 vmlinux
+  install -Dt "${_builddir}" -m644 vmlinux  
 
   mkdir "${_builddir}/.tmp_versions"
 
@@ -211,9 +246,6 @@ package_linux516-t2-headers() {
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "${_builddir}/tools/objtool" tools/objtool/objtool
 
-  # https://forum.manjaro.org/t/90629/39
-  install -Dt "${_builddir}/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
-
   # remove unneeded architectures
   local _arch
   for _arch in "${_builddir}"/arch/*/; do
@@ -239,7 +271,7 @@ package_linux516-t2-headers() {
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
   strip $STRIP_STATIC "${_builddir}/vmlinux"
-
+  
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
 }
