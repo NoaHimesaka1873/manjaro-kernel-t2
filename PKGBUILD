@@ -153,7 +153,7 @@ prepare() {
 }
 
 build() {
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v${pkgver}"
 
   msg "build"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -167,7 +167,7 @@ package_linux515-t2() {
   replaces=('linux57-mbp' 'linux56-mbp')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v${pkgver}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -207,7 +207,7 @@ package_linux515-t2-headers() {
   replaces=('linux57-mbp-headers' 'linux56-mbp-headers')
   provides=("linux-headers=$pkgver")
 
-  cd "linux-${_basekernel}"
+  cd "kernel-t2-v${pkgver}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
