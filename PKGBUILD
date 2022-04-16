@@ -136,7 +136,9 @@ prepare() {
   git apply -p1 < "../0413-bootsplash.gitpatch"
 
   msg2 "add config"
-  cat "../config" > ./.config
+  cp ../config .config
+  make olddefconfig
+  diff -u ../config .config || :
 
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
