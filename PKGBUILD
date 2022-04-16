@@ -163,7 +163,7 @@ build() {
   cd "kernel-t2-v${pkgver}"
 
   msg "build"
-  make ${MAKEFLAGS} all
+  make all ${MAKEFLAGS} 
 }
 
 package_linux515-t2() {
