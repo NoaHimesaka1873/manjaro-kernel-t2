@@ -13,6 +13,7 @@ jobs:
         HOSTNAME=yuruyuri
         cat << EOF > entrypoint.sh
         cd /build
+        groupadd -r $BUILDGROUP
         useradd $BUILDUSER -g $BUILDGROUP -m
         passwd -d $BUILDUSER
         pacman -Syu --noconfirm --needed sudo base-devel
