@@ -68,7 +68,10 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         '0410-bootsplash.patch'
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
-        '0413-bootsplash.gitpatch')
+        '0413-bootsplash.gitpatch'
+        # t2linux patches
+        '1001-Put-apple-bce-and-apple-ibridge-in-drivers-staging.patch'
+        '1002-add-modalias-to-apple-bce.patch')
 sha256sums=('SKIP'
             '15caed316b86dad46e6c41fa6c31691131a9184b463c91e6b5a378824367b0c2'
             'SKIP'
@@ -102,7 +105,9 @@ sha256sums=('SKIP'
             'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
+            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
+            'b7c987889d92a48d638d5258842b10f6c856e57f29ad23475aa507c7b4ad5710'
+            'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a')
 
 prepare() {
   cd "kernel-t2-v${pkgver}"
@@ -156,7 +161,7 @@ build() {
   cd "kernel-t2-v${pkgver}"
 
   msg "build"
-  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
+  make ${MAKEFLAGS} all
 }
 
 package_linux515-t2() {
