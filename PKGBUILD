@@ -159,7 +159,7 @@ build() {
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux515() {
+package_linux515-t2() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
@@ -201,7 +201,7 @@ package_linux515() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux515-headers() {
+package_linux515-t2-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
   replaces=('linux57-mbp-headers' 'linux56-mbp-headers')
