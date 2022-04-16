@@ -163,7 +163,7 @@ build() {
   cd "kernel-t2-v${pkgver}"
 
   msg "build"
-  make all ${MAKEFLAGS} 
+  make LOCALVERSION= bzImage modules
 }
 
 package_linux515-t2() {
