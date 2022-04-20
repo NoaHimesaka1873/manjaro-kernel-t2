@@ -7,6 +7,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Build In Docker
+      if: ${{ !contains(github.event.head_commit.message, '[no build]') }}
       run: |
         BUILDUSER=akazaakari
         BUILDGROUP=gorakubu
@@ -26,26 +27,30 @@ jobs:
         docker run -h $HOSTNAME -t -v $PWD:/build archlinux /bin/bash /build/entrypoint.sh
     
     - name: Print sha512sums
+      if: ${{ !contains(github.event.head_commit.message, '[no build]') }}
       run: sha512sum *.pkg.tar.*
 
     - name: Upload Built Packages
+      if: ${{ !contains(github.event.head_commit.message, '[no build]') }}
       uses: actions/upload-artifact@v2
       with:
         name: built-packages
         path: ${{ github.workspace }}/*.pkg.tar.*
         
     - name: Create Tag
+      if: ${{ !contains(github.event.head_commit.message, '[no rel]') && !contains(github.event.head_commit.message, '[no build]') }}
       id: create_tag
       run: |
         source PKGBUILD
         echo "::set-output name=tag::${pkgver} - Release YuruYuri"
         echo $pkgver $pkgrel
     - name: Release
-      if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[no rel]') }}
+      if: ${{ !contains(github.event.head_commit.message, '[no rel]') && !contains(github.event.head_commit.message, '[no build]') }}
       uses: softprops/action-gh-release@v1
       with:
          files: |
            ${{ github.workspace }}/*.zip
+           ${{ github.workspace }}/*.pkg.tar.*
          tag_name: v${{ steps.create_tag.outputs.tag }}
          draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
          prerelease: ${{ contains(github.event.head_commit.message, '[prerel]') }}
