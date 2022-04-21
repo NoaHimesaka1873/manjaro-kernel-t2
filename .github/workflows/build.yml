@@ -42,7 +42,7 @@ jobs:
       id: create_tag
       run: |
         source PKGBUILD
-        echo "::set-output name=tag::${pkgver} - Release YuruYuri"
+        echo "::set-output name=tag::${pkgver}"
         echo $pkgver $pkgrel
     - name: Release
       if: ${{ !contains(github.event.head_commit.message, '[no rel]') && !contains(github.event.head_commit.message, '[no build]') }}
@@ -51,6 +51,7 @@ jobs:
          files: |
            ${{ github.workspace }}/*.zip
          tag_name: v${{ steps.create_tag.outputs.tag }}
+         name: ${{ steps.create_tag.outputs.tag }} - Release YuruYuri
          draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
          prerelease: ${{ contains(github.event.head_commit.message, '[prerel]') }}
          body: |
