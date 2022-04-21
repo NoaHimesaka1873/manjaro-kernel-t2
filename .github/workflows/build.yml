@@ -50,6 +50,7 @@ jobs:
       with:
          files: |
            ${{ github.workspace }}/*.zip
+           ${{ github.workspace }}/*.pkg.tar.*
          tag_name: v${{ steps.create_tag.outputs.tag }}
          name: ${{ steps.create_tag.outputs.tag }} - Release YuruYuri
          draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
