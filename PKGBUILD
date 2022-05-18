@@ -1,59 +1,38 @@
+# Maintainer: Noa Himesaka <himesaka@noa.codes>
+# Manjaro maintainers:
 # Maintainer: Bernhard Landauer <bernhard@manjaro.org>
 # Maintainer: Philip Müller <philm[at]manjaro[dot]org>
-# Arch credits:
+# Archlinux maintainers:
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux515-t2
-pkgname=('linux515-t2' 'linux515-t2-headers')
-_kernelname=-MANJAROT2-YURUYURI
-_basekernel=5.15
-_basever=515
-pkgver=5.15.32
-pkgrel=1
+pkgver=5.17.8
+pkgrel=2
+_basekernel=5.17
+_basever=${_basekernel//.}
+_kernelname=-MANJARO-PAINOKO
+pkgbase=linux${_basever}-t2
+pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
-makedepends=('bc'
-    'docbook-xsl'
-    'libelf'
-    'pahole'
-    'git'
-    'inetutils'
-    'kmod'
-    'xmlto'
-    'cpio'
-    'perl'
-    'tar'
-    'xz')
+makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.gz"
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
+        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
-        # t2linux Patches
-        apple-bce::git+https://github.com/t2linux/apple-bce-drv#commit=f93c6566f98b3c95677de8010f7445fa19f75091
-        # Redecorating fork has kbd bl working on mbp16,*. Code quality of those changes could be better.
-        apple-ibridge::git+https://github.com/Redecorating/apple-ib-drv#commit=467df9b11cb55456f0365f40dd11c9e666623bf3
         # ARCH Patches
-        '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
-        '0002-PCI_Add_more_NVIDIA_controllers_to_the_MSI_masking_quirk.patch'
-        '0003-iommu_intel_do_deep_dma-unmapping_to_avoid_kernel-flooding.patch'
-        '0004-cpufreq_intel_pstate_ITMT_support_for_overclocked_system.patch'
-        '0005-Bluetooth_btintel_Fix_bdaddress_comparison_with_garbage_value.patch'
-        '0006-lg-laptop_Recognize_more_models.patch'
+        '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
+        '0102-random-treat_bootloader_trust_toggle_the_same_way_as_cpu_trust_toggle.patch'
+        '0103-tick-Detect_and_fix_jiffies_update_stall.patch'
+        '0104-tick-rcu-Remove_obsolete_parameters.patch'
+        '0105-tick-rcu-Stop_allowing_RCU_SOFTIRQ_in_idle.patch'
+        '0106-lib-irq_poll-Declare_IRQ_POLL_softirq_vector_as_ksoftirqd-parking_safe.patch'
+        '0107-NFSv4.1_provide_mount_option_to_toggle_trunking_discovery.patch'
         # MANJARO Patches
-        '0101-i2c-nuvoton-nc677x-hwmon-driver.patch'
-#        '0102-iomap-iomap_bmap-should-accept-unwritten-maps.patch'
-        '0103-futex.patch' # https://github.com/sirlucjan/kernel-patches
-        '0104-revert-xhci-Add-support-for-Renesas-controller-with-memory.patch'
-        '0105-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
-        '0108-drm_i915_Add_workaround_numbers_to_GEN7_COMMON_SLICE_CHICKEN1_whitelisting.patch::https://patchwork.freedesktop.org/patch/463650/raw/'
-        # Lenovo + AMD
-        '0201-lenovo-wmi2.patch'
-        # other patches
-        "0202-mt76-mt7921-add-support-for-PCIe-ID-0x7922-0x0608-0x0616.patch"
-        "0203_mt76_mt7921_reduce_log_severity_levels_for_informative_messages.patch"
+        '0201-rtl_bt_fix_load_firmware.patch'
         # Bootsplash
-        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'        
+        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0303-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
@@ -69,27 +48,82 @@ source=("https://github.com/t2linux/kernel/archive/refs/tags/t2-v${pkgver}.tar.g
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch'
-        # t2linux patches
-        '1001-Put-apple-bce-and-apple-ibridge-in-drivers-staging.patch'
-        '1002-add-modalias-to-apple-bce.patch')
-sha256sums=('SKIP'
-            'SKIP'
-            'SKIP'
-            'SKIP'
-            '986f8d802f37b72a54256f0ab84da83cb229388d58c0b6750f7c770818a18421'
-            'e2823eff3355b7c88a3fa327ea2f84f23cbd36569e0a5f0f76599023f63a52ca'
-            'ce53090a4572cd6162d22225113082f7e4df5028a1230529d170460e26dcf849'
-            'ab0360eac59329eb84f028c2f402ee4a17e4b3dfacb7957355e6178d35af87b9'
-            '76701599bbafa49b90ccb073ef29ce2dc3731566e8fa852bd1e9e7796e184754'
-            'a2a0a0542055a6a921542fbb05cedb6eb6f3d3fb0c038bfb2304bfd3931a0f71'
-            '7823d7488f42bc4ed7dfae6d1014dbde679d8b862c9a3697a39ba0dae5918978'
-            '844e66a95d7df754c55ac2f1ce7e215b1e56e20ca095462d926a993d557b20e0'
-            'd9330ea593829a6ef3b824db9570253280cbff7da2b4beb47cbc037824d1a29b'
-            '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
-            'e8e6120035977903a7117ba215809b9b162b64a789848107513f219180baaada'
-            '1d58ef2991c625f6f0eb33b4cb8303932f53f1c4694e42bae24c9cd36d2ad013'
-            '04fd3142561aa3cd7f4e469099ae294b47b02f4a5b344ff7c813d8593eb634d8'
-            'f8fc51c0c644ae743154c37b77ade50fa5a950980c9dd56d8752e4d6b5dfb153'
+  # apple-bce, apple-ibridge
+  apple-bce::git+https://github.com/t2linux/apple-bce-drv#commit=f93c6566f98b3c95677de8010f7445fa19f75091
+  apple-ibridge::git+https://github.com/Redecorating/apple-ib-drv#commit=467df9b11cb55456f0365f40dd11c9e666623bf3
+
+  1001-Put-apple-bce-and-apple-ibridge-in-drivers-staging.patch
+  1002-add-modalias-to-apple-bce.patch
+
+  # Fix some acpi errors
+  2001-fix-acpica-for-zero-arguments-acpi-calls.patch
+
+  # Apple SMC ACPI support
+  3001-applesmc-convert-static-structures-to-drvdata.patch
+  3002-applesmc-make-io-port-base-addr-dynamic.patch
+  3003-applesmc-switch-to-acpi_device-from-platform.patch
+  3004-applesmc-key-interface-wrappers.patch
+  3005-applesmc-basic-mmio-interface-implementation.patch
+  3006-applesmc-fan-support-on-T2-Macs.patch
+  3007-applesmc-Add-iMacPro-to-applesmc_whitelist.patch
+
+  # T2 USB Keyboard/Touchpad support
+  4001-HID-apple-Add-support-for-keyboard-backlight-on-cert.patch
+  4002-HID-apple-Add-necessary-IDs-and-configuration-for-T2.patch
+  4003-HID-apple-Add-fn-mapping-for-MacBook-Pros-with-Touch.patch
+  4004-Input-bcm5974-Add-support-for-the-T2-Macs.patch
+
+  # make hid not touch tb to avoid `vhci: [00] URB failed: 3`
+  5001-Fix-for-touchbar.patch
+
+  # UVC Camera support
+  6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
+
+  # Hack for i915 overscan issues
+  7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
+
+  # Broadcom WIFI device support
+  8001-brcmfmac-firmware-Handle-per-board-clm_blob-files.patch
+  8002-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
+  8003-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
+  8004-brcmfmac-pcie-Read-Apple-OTP-information.patch
+  8005-brcmfmac-of-Fetch-Apple-properties.patch
+  8006-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
+  8007-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
+  8008-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
+  8009-brcmfmac-pcie-Support-PCIe-core-revisions-64.patch
+  8010-brcmfmac-pcie-Add-IDs-properties-for-BCM4378.patch
+  8011-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
+  8012-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
+  8013-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
+  8014-brcmfmac-pcie-Add-IDs-properties-for-BCM4355.patch
+  8015-brcmfmac-pcie-Add-IDs-properties-for-BCM4377.patch
+  8016-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
+  8017-brcmfmac-chip-Only-disable-D11-cores-handle-an-arbit.patch
+  8018-brcmfmac-chip-Handle-1024-unit-sizes-for-TCM-blocks.patch
+  8019-brcmfmac-cfg80211-Add-support-for-scan-params-v2.patch
+  8020-brcmfmac-feature-Add-support-for-setting-feats-based.patch
+  8021-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
+  8022-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
+  8023-brcmflac-cfg80211-Use-WSEC-to-set-SAE-password.patch
+  8024-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
+  8025-brcmfmac-common-Add-support-for-downloading-TxCap-bl.patch
+  8026-brcmfmac-pcie-Load-and-provide-TxCap-blobs.patch
+  8027-brcmfmac-common-Add-support-for-external-calibration.patch
+
+  # do not make the t2 angry with some kernel configs
+  9001-efi-Do-not-import-certificates-from-UEFI-Secure-Boot.patch)
+sha256sums=('555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1'
+            '3dcdb3dd014240fe4eb344a20cd62bef568f33458d391946fdee5a4a8f0ef83f'
+            '0df92b4fba502d7e087e7631fbd4df1d94df46aedf14b80e94527ffc13b76459'
+            'f85b07d73b2f4ad8bb6b59ee6624b2dd06a03824fc7b00131a01df36c8d899fe'
+            'fc9223bf2d430ab1c122daada4f51d835a74f56c007c82842eeca3acd2d788be'
+            'f7eb15d563cdbb2c5d780559a1c9564ca8d2dd1ea79fc73a5cc8545278605dad'
+            'e17f4175131fd5224b438be00b55ac6496ec6c25ac2c6fcc3ec6f9a94e6b3221'
+            'ca5bb1ba3cb70020d712fa7f684de7d20d2bd6ad2efe6d92b578ab3b12749b04'
+            '6a7cd911548f2b6618ce667f8b88cf1159e6b455e64b74d802710b4fe83ef0a2'
+            '305e5f1844c5f919f8de1873e11b88dec305dfa8cc2245e75e7c157e01bc1443'
+            'e96d2093539cc23824a6c0dc725332b9c626da14c1bec00dc5ca537ccafb0194'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
@@ -106,11 +140,60 @@ sha256sums=('SKIP'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
+            'SKIP'
+            'SKIP'
             'b7c987889d92a48d638d5258842b10f6c856e57f29ad23475aa507c7b4ad5710'
-            'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a')
+            'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a'
+            '45b911e592dd6c717e77ec4d8cbf844860bb7c29ace7a7170e7bf59c12e91bb4'
+            'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279'
+            '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3'
+            '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d'
+            '62f6d63815d4843ca893ca76b84a9d32590a50358ca0962017ccd75a40884ba8'
+            '2827dab6eeb2d2a08034938024f902846b5813e967a0ea253dc1ea88315da383'
+            '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625'
+            'd4ca5a01da5468a1d2957b8eb4a819e1b867a3bcd1cd47389d7c9ac9154b5430'
+            '6b1033f3081e3c69a909694a8114407268a22f744edc651cf0e018c3dc671f17'
+            '9f5a32bd63432ac30cfcd4bd38b037f32fd53e7c5b181b422b8d3dc9f3c4f813'
+            'a2095aef8d6470d220a4990f356eabbbaf3e11cc0d711185bae17acb67936cc1'
+            'b1f19084e9a9843dd8c457c55a8ea8319428428657d5363d35df64fb865a4eae'
+            '92e6f4173074ac902c3fc397ea39a5ff6d5eb8645539645c0cd61b3d05ac83ca'
+            '31e65ffa0ec2a998de6a806f931a9ca684a9be5933918a94b0e79ef6456e0821'
+            '9ede98eceb69e9c93e25fdb2c567466963bdd2f81c0ecb9fb9e5107f6142ff26'
+            'dfe5f4e112d339c7b0950916d636509a1eb3290652b1cd9c6e72a06f07f5980b'
+            'c404b53cf6967e8e220c2990096a688b4d5a824b96bb3788cd8dab77222925b1'
+            '4898424e625142cf98b5140e2cf7fe725a79ad52b3910916aa85fd722b54e8e6'
+            '666ab8ebeda7a52216830668fdc1ae6b339ee01960e20710ed12d54d4f207f46'
+            '95a2e6e512760a503ba0c5feedd7c917f9c01cd9a5b9d8f3b23b3eb47786495f'
+            'e182f913dbdb27e6b8055a817d864823c6263b421e2c2f94e138056f7ead10a7'
+            '5bc6d41c5f442d1e69151ca4108f8fe931628f897430aff1c18331237af341ec'
+            '8207c195e75494aa5375f5c992d6876b1b7417b69dac937766fafbdb75e6b68a'
+            '199c7b73f111b41824f1706f3d80bf5b209732d8982307a1a35d3a67fe5d5476'
+            '7d0eec498d9b82aac89f84fb39747b82338e18615ee101834626966726ee37f9'
+            '786289896c39590274594be6e34630c02854ae504334c945ccf380a0557ad50c'
+            'd0ab6225f51a722fbc38aadfd6a5682b34087d235a25a0cbc8445571989a26c6'
+            '96e47a1922b3ec423e01a67e7ecdbdcefa81600b1e5426ee204e9b6fdd9e386c'
+            'ec1b389e3c2e3ae3b228eb819577e26ce79a41b156a39cae78242ae16a72d97d'
+            '8e0f43d13c1bc0fba64499322f73e5d01cb0e0b1c7c498bfd7aae422e6216d04'
+            'f7f072d1644746b1bd2a84c23a96c7228b9a6853941fdd4933bc4a433c750796'
+            'e9062da9b3892c64258049333cbce57dfd8f334676063d95bba879c7154b56d0'
+            '417eb1c3f51dc639b249b8d9110c47c8da5cce9e4889f4bc47b03bcc2a4f192a'
+            'ba4fa954cc6e24a643c97120e3c6f5031a27382f89ad3affe231f5d1170c1ed7'
+            '60251fa2006dc1e399c870f74a3a07212312a1da7aec0bdc699dfbb48b950703'
+            '25e37df5b2ff9343be06d4c2005c7daacc14c830d05a6e20b23e471921d35942'
+            'd6148567779e528347a6874d1c3c9795bd2fbe78e035ac83540b2567f86d8502'
+            'aa7f19598f4cccb402545016dbeaf73aa6f72ac5b360c8a12e14750a593ceb13'
+            'f141edb39a58e4d465fea99a0b002e3ab83b86e5d2ec4d0b86f118c158d271f7'
+            '2a79e9781b1f3603a177837b3156ff0b083769cd951e4b37f559d84570a6e132'
+            '5e2cd52811daeacda9136556d2c7754746ce026dcf44f16334b013603a877b94'
+            '1dfdd62233a9b4b4e5da65374d1e74d0727aeb6d76d191bd2163ec033e7e1fb1'
+            '9c66c30e5312922918d92411d4698291071a9f7b6be6a54f19fc74a31e3cfca4')
 
 prepare() {
-  cd "kernel-t2-v${pkgver}"
+  cd "linux-${_basekernel}"
+
+  # add upstream patch
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   for i in apple-bce apple-ibridge; do
     echo "Copying $i in to drivers/staging..."
@@ -118,10 +201,6 @@ prepare() {
 	mkdir drivers/staging/$i
     cp -r $srcdir/$i/* drivers/staging/$i/
   done
-
-  # add upstream patch
-  #msg "add upstream patch"
-  #patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
@@ -136,9 +215,7 @@ prepare() {
   git apply -p1 < "../0413-bootsplash.gitpatch"
 
   msg2 "add config"
-  cp ../config .config
-  make olddefconfig
-  diff -u ../config .config || :
+  cat "../config" > ./.config
 
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
@@ -160,21 +237,21 @@ prepare() {
 }
 
 build() {
-  cd "kernel-t2-v${pkgver}"
+  cd "linux-${_basekernel}"
 
   msg "build"
-  make LOCALVERSION= bzImage modules
+  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux515-t2() {
+package_linux517() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
+  replaces=('linux57-mbp' 'linux56-mbp' 'linux516-t2')
   conflicts=('apple-bce-dkms-git' 'apple-bce-git' 'apple-ibridge-dkms-git' 'apple-ibridge-git')
-  replaces=('linux57-mbp' 'linux56-mbp')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
-  cd "kernel-t2-v${pkgver}"
+  cd "linux-${_basekernel}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -208,18 +285,18 @@ package_linux515-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux515-t2-headers() {
+package_linux517-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
-  replaces=('linux57-mbp-headers' 'linux56-mbp-headers')
+  replaces=('linux57-mbp-headers' 'linux56-mbp-headers' 'linux516-t2-headers')
   provides=("linux-headers=$pkgver")
 
-  cd "kernel-t2-v${pkgver}"
+  cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
   install -Dt "${_builddir}/kernel" -m644 kernel/Makefile
-  install -Dt "${_builddir}" -m644 vmlinux  
+  install -Dt "${_builddir}" -m644 vmlinux
 
   mkdir "${_builddir}/.tmp_versions"
 
@@ -253,6 +330,9 @@ package_linux515-t2-headers() {
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "${_builddir}/tools/objtool" tools/objtool/objtool
 
+  # https://forum.manjaro.org/t/90629/39
+  install -Dt "${_builddir}/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
+
   # remove unneeded architectures
   local _arch
   for _arch in "${_builddir}"/arch/*/; do
@@ -278,7 +358,7 @@ package_linux515-t2-headers() {
     esac
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
   strip $STRIP_STATIC "${_builddir}/vmlinux"
-  
+
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
 }
