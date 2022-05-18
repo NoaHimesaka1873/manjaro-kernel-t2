@@ -243,8 +243,8 @@ build() {
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux517() {
-  pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
+package_linux517-t2() {
+  pkgdesc="The ${pkgbase/linux/Linux} kernel and modules for Macs with Apple T2 security chip"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
   replaces=('linux57-mbp' 'linux56-mbp' 'linux516-t2')
@@ -285,8 +285,8 @@ package_linux517() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux517-headers() {
-  pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
+package_linux517-t2-headers() {
+  pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel for Macs with Apple T2 security chip"
   depends=('gawk' 'python' 'libelf' 'pahole')
   replaces=('linux57-mbp-headers' 'linux56-mbp-headers' 'linux516-t2-headers')
   provides=("linux-headers=$pkgver")
