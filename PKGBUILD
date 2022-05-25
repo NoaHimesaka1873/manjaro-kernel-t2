@@ -59,7 +59,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
   # T2 USB Keyboard/Touchpad support
   #4001-HID-apple-Add-support-for-keyboard-backlight-on-cert.patch
-  4002-HID-apple-Add-necessary-IDs-and-configuration-for-T2.patch
+  #4002-HID-apple-Add-necessary-IDs-and-configuration-for-T2.patch
   4003-HID-apple-Add-fn-mapping-for-MacBook-Pros-with-Touch.patch
   4004-Input-bcm5974-Add-support-for-the-T2-Macs.patch
 
@@ -134,7 +134,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
             '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625'
             'd4ca5a01da5468a1d2957b8eb4a819e1b867a3bcd1cd47389d7c9ac9154b5430'
             #'6b1033f3081e3c69a909694a8114407268a22f744edc651cf0e018c3dc671f17'
-            '9f5a32bd63432ac30cfcd4bd38b037f32fd53e7c5b181b422b8d3dc9f3c4f813'
+            #'9f5a32bd63432ac30cfcd4bd38b037f32fd53e7c5b181b422b8d3dc9f3c4f813'
             'a2095aef8d6470d220a4990f356eabbbaf3e11cc0d711185bae17acb67936cc1'
             'b1f19084e9a9843dd8c457c55a8ea8319428428657d5363d35df64fb865a4eae'
             '92e6f4173074ac902c3fc397ea39a5ff6d5eb8645539645c0cd61b3d05ac83ca'
