@@ -99,7 +99,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
   8024-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
   8025-brcmfmac-common-Add-support-for-downloading-TxCap-bl.patch
   8026-brcmfmac-pcie-Load-and-provide-TxCap-blobs.patch
-  8027-brcmfmac-common-Add-support-for-external-calibration.patch
+  #8027-brcmfmac-common-Add-support-for-external-calibration.patch
 
   # do not make the t2 angry with some kernel configs
   9001-efi-Do-not-import-certificates-from-UEFI-Secure-Boot.patch)
@@ -167,7 +167,7 @@ sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'f141edb39a58e4d465fea99a0b002e3ab83b86e5d2ec4d0b86f118c158d271f7'
             '2a79e9781b1f3603a177837b3156ff0b083769cd951e4b37f559d84570a6e132'
             '5e2cd52811daeacda9136556d2c7754746ce026dcf44f16334b013603a877b94'
-            '1dfdd62233a9b4b4e5da65374d1e74d0727aeb6d76d191bd2163ec033e7e1fb1'
+            #'1dfdd62233a9b4b4e5da65374d1e74d0727aeb6d76d191bd2163ec033e7e1fb1'
             '9c66c30e5312922918d92411d4698291071a9f7b6be6a54f19fc74a31e3cfca4')
 
 prepare() {
