@@ -67,7 +67,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
   5001-Fix-for-touchbar.patch
 
   # UVC Camera support
-  6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
+  #6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
 
   # Hack for i915 overscan issues
   7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
@@ -103,7 +103,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
   # do not make the t2 angry with some kernel configs
   9001-efi-Do-not-import-certificates-from-UEFI-Secure-Boot.patch)
-  sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
+
+sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             '523ffb848dd39df0fb93f668e1985b514a23ae31b1892c415753b83651979c04'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
@@ -138,7 +139,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
             #'a2095aef8d6470d220a4990f356eabbbaf3e11cc0d711185bae17acb67936cc1'
             'b1f19084e9a9843dd8c457c55a8ea8319428428657d5363d35df64fb865a4eae'
             '92e6f4173074ac902c3fc397ea39a5ff6d5eb8645539645c0cd61b3d05ac83ca'
-            '31e65ffa0ec2a998de6a806f931a9ca684a9be5933918a94b0e79ef6456e0821'
+            #'31e65ffa0ec2a998de6a806f931a9ca684a9be5933918a94b0e79ef6456e0821'
             '9ede98eceb69e9c93e25fdb2c567466963bdd2f81c0ecb9fb9e5107f6142ff26'
             'dfe5f4e112d339c7b0950916d636509a1eb3290652b1cd9c6e72a06f07f5980b'
             'c404b53cf6967e8e220c2990096a688b4d5a824b96bb3788cd8dab77222925b1'
