@@ -21,16 +21,6 @@ options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
-        # ARCH Patches
-        '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
-        '0102-random-treat_bootloader_trust_toggle_the_same_way_as_cpu_trust_toggle.patch'
-        '0103-tick-Detect_and_fix_jiffies_update_stall.patch'
-        '0104-tick-rcu-Remove_obsolete_parameters.patch'
-        '0105-tick-rcu-Stop_allowing_RCU_SOFTIRQ_in_idle.patch'
-        '0106-lib-irq_poll-Declare_IRQ_POLL_softirq_vector_as_ksoftirqd-parking_safe.patch'
-        '0107-NFSv4.1_provide_mount_option_to_toggle_trunking_discovery.patch'
-        # MANJARO Patches
-        '0201-rtl_bt_fix_load_firmware.patch'
         # Bootsplash
         '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -113,17 +103,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
   # do not make the t2 angry with some kernel configs
   9001-efi-Do-not-import-certificates-from-UEFI-Secure-Boot.patch)
-sha256sums=('SKIP'
-            #'SKIP'
-            '0df92b4fba502d7e087e7631fbd4df1d94df46aedf14b80e94527ffc13b76459'
-            'f85b07d73b2f4ad8bb6b59ee6624b2dd06a03824fc7b00131a01df36c8d899fe'
-            'fc9223bf2d430ab1c122daada4f51d835a74f56c007c82842eeca3acd2d788be'
-            'f7eb15d563cdbb2c5d780559a1c9564ca8d2dd1ea79fc73a5cc8545278605dad'
-            'e17f4175131fd5224b438be00b55ac6496ec6c25ac2c6fcc3ec6f9a94e6b3221'
-            'ca5bb1ba3cb70020d712fa7f684de7d20d2bd6ad2efe6d92b578ab3b12749b04'
-            '6a7cd911548f2b6618ce667f8b88cf1159e6b455e64b74d802710b4fe83ef0a2'
-            '305e5f1844c5f919f8de1873e11b88dec305dfa8cc2245e75e7c157e01bc1443'
-            'e96d2093539cc23824a6c0dc725332b9c626da14c1bec00dc5ca537ccafb0194'
+  sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
+            '523ffb848dd39df0fb93f668e1985b514a23ae31b1892c415753b83651979c04'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
@@ -245,7 +226,7 @@ build() {
   make LOCALVERSION= bzImage modules
 }
 
-package_linux517-t2() {
+package_linux518-t2() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules for Macs with Apple T2 security chip"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
@@ -287,7 +268,7 @@ package_linux517-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux517-t2-headers() {
+package_linux518-t2-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel for Macs with Apple T2 security chip"
   depends=('gawk' 'python' 'libelf' 'pahole')
   replaces=('linux57-mbp-headers' 'linux56-mbp-headers' 'linux516-t2-headers')
