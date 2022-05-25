@@ -6,11 +6,11 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.17.8
-pkgrel=2
-_basekernel=5.17
+pkgver=5.18.0
+pkgrel=1
+_basekernel=5.18
 _basever=${_basekernel//.}
-_kernelname=-T2-PAINOKO
+_kernelname=-T2-OTOTSUKU
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
@@ -19,7 +19,7 @@ license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
-        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+        #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
@@ -113,8 +113,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
   # do not make the t2 angry with some kernel configs
   9001-efi-Do-not-import-certificates-from-UEFI-Secure-Boot.patch)
-sha256sums=('555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1'
-            '3dcdb3dd014240fe4eb344a20cd62bef568f33458d391946fdee5a4a8f0ef83f'
+sha256sums=('SKIP'
+            #'SKIP'
             '0df92b4fba502d7e087e7631fbd4df1d94df46aedf14b80e94527ffc13b76459'
             'f85b07d73b2f4ad8bb6b59ee6624b2dd06a03824fc7b00131a01df36c8d899fe'
             'fc9223bf2d430ab1c122daada4f51d835a74f56c007c82842eeca3acd2d788be'
