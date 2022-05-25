@@ -77,7 +77,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
   8002-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
   8003-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
   8004-brcmfmac-pcie-Read-Apple-OTP-information.patch
-  8005-brcmfmac-of-Fetch-Apple-properties.patch
+  #8005-brcmfmac-of-Fetch-Apple-properties.patch
   8006-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
   8007-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
   8008-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
@@ -145,7 +145,7 @@ sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'c404b53cf6967e8e220c2990096a688b4d5a824b96bb3788cd8dab77222925b1'
             '4898424e625142cf98b5140e2cf7fe725a79ad52b3910916aa85fd722b54e8e6'
             '666ab8ebeda7a52216830668fdc1ae6b339ee01960e20710ed12d54d4f207f46'
-            '95a2e6e512760a503ba0c5feedd7c917f9c01cd9a5b9d8f3b23b3eb47786495f'
+            #'95a2e6e512760a503ba0c5feedd7c917f9c01cd9a5b9d8f3b23b3eb47786495f'
             'e182f913dbdb27e6b8055a817d864823c6263b421e2c2f94e138056f7ead10a7'
             '5bc6d41c5f442d1e69151ca4108f8fe931628f897430aff1c18331237af341ec'
             '8207c195e75494aa5375f5c992d6876b1b7417b69dac937766fafbdb75e6b68a'
