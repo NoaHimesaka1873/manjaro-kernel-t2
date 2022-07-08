@@ -6,7 +6,7 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.18.9
+pkgver=5.18.10
 pkgrel=1
 _basekernel=5.18
 _basever=${_basekernel//.}
