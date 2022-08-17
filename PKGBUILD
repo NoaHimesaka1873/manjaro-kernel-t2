@@ -47,7 +47,7 @@ source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}-${_rc}.tar.gz"
         '0413-bootsplash.gitpatch')
 
 sha256sums=('451787a0461abe26fce8af5740ac20b81610bf241ba1197be77ee9ebd3fc71ad'
-            '826f50bdd86393897014c7da0f71970a05814b22a1f7b1a89fc9f783db707579'
+            '8dd1ebe03f43e7879562c3573a9b5a23bf80b6ce8474a90aebca851312e3ad63'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             '02b035fa598f9e281b9b5b645809d1bcacfa189c733dc291b4305c77cde52960'
             '2c2c72e5f72cf306d38f91869619c6f808b5f694341eeba398de1b0919bf755b'
