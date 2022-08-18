@@ -31,7 +31,6 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
         # Bootsplash
         '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
-        '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0303-revert-fbcon-remove-soft-scrollback-code.patch'
         '0401-bootsplash.patch'
         '0402-bootsplash.patch'
@@ -95,7 +94,6 @@ sha256sums=('SKIP'
             '2c2c72e5f72cf306d38f91869619c6f808b5f694341eeba398de1b0919bf755b'
             'e96f2ac9e9f880451875a3aecbc10268ee8268494a8c9dce49291426d7896253'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
-            '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '2e8a9c21fbd0f50cc450df7a2823ad670d0b3c2ffa0f613a729cb2caaf02cb9f'
             '57ce3e0ba6bf400d36358a9d30589905f6e51bc037d7165f5a2658b6bdc86793'
             'a26b3abaec1cd5731bc8431fecb8b3eb0ba47c1992e614643320df14ff859556'
