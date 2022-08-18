@@ -6,11 +6,11 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.18.11
+pkgver=5.19.2
 pkgrel=1
-_basekernel=5.18
+_basekernel=5.19
 _basever=${_basekernel//.}
-_kernelname=-T2-OTOTSUKU
+_kernelname=-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
 arch=('x86_64')
@@ -21,6 +21,14 @@ options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
+	# ARCH Patches
+        '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
+        '0102-drm_i915_psr_Use_full_update_In_case_of_area_calculation_fails.patch'
+        '0103-drm_i915_Ensure_damage_clip_area_is_within_pipe_area.patch'
+        '0104-mm_vmscan_fix_extreme_overreclaim_and_swap_floods.patch'
+        '0105-soundwire_intel-use_pm_runtime_resume_on_component_probe.patch'
+        # MANJARO Patches
+
         # Bootsplash
         '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -38,7 +46,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0411-bootsplash.patch'
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch'
-  # apple-bce, apple-ibridge
+	# apple-bce, apple-ibridge
   apple-bce::git+https://github.com/t2linux/apple-bce-drv#commit=f93c6566f98b3c95677de8010f7445fa19f75091
   apple-ibridge::git+https://github.com/Redecorating/apple-ib-drv#commit=467df9b11cb55456f0365f40dd11c9e666623bf3
 
@@ -47,6 +55,9 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
 
   # Fix some acpi errors
   2001-fix-acpica-for-zero-arguments-acpi-calls.patch
+
+  # Efi fixes
+  2002-efi-Correct-Macmini-capitalisation-in-uefi-cert-quir.patch
 
   # Apple SMC ACPI support
   3001-applesmc-convert-static-structures-to-drvdata.patch
@@ -70,15 +81,24 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
   # https://github.com/AsahiLinux/linux/commits/bits/080-wifi
   8001-asahilinux-wifi-patchset.patch
 
+  # Broadcom BCM4377 BT device support
+  # https://github.com/AsahiLinux/linux/commits/bluetooth-wip
+  8002-asahilinux-hci_bcm4377-patchset.patch
+
 )
-sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
+sha256sums=('SKIP'
 	    'SKIP'
-            '523ffb848dd39df0fb93f668e1985b514a23ae31b1892c415753b83651979c04'
+            'SKIP'
+	    '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
+            'c0a9c427b55bd1c13ccebbb503926c4ce30823fcec6d1a949fec981a4ec3a367'
+            'b8701a6316fb286b44adb703528462303f361d9c7af9667fb19553c4ac90816c'
+            '2c2c72e5f72cf306d38f91869619c6f808b5f694341eeba398de1b0919bf755b'
+            'e96f2ac9e9f880451875a3aecbc10268ee8268494a8c9dce49291426d7896253'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
-            '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
-            '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
-            'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
+            '2e8a9c21fbd0f50cc450df7a2823ad670d0b3c2ffa0f613a729cb2caaf02cb9f'
+            '57ce3e0ba6bf400d36358a9d30589905f6e51bc037d7165f5a2658b6bdc86793'
+            'a26b3abaec1cd5731bc8431fecb8b3eb0ba47c1992e614643320df14ff859556'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
             '1144d51e5eb980fceeec16004f3645ed04a60fac9e0c7cf88a15c5c1e7a4b89e'
             'dd4b69def2efacf4a6c442202ad5cb93d492c03886d7c61de87696e5a83e2846'
@@ -86,15 +106,16 @@ sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'a0c548c5703d25ae34b57931f1162de8b18937e676e5791a0f039922090881e7'
             '8dbb5ab3cb99e48d97d4e2f2e3df5d0de66f3721b4f7fd94a708089f53245c77'
             'a7aefeacf22c600fafd9e040a985a913643095db7272c296b77a0a651c6a140a'
-            'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
+            'cf06d959a53eff6d3c287327f1cb2a68346d725cfd1370bc7482a0edc75692fc'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
-            '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
+            'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             'SKIP'
             'SKIP'
-            'b7c987889d92a48d638d5258842b10f6c856e57f29ad23475aa507c7b4ad5710'
+            '4482f285a66a31561452c81f232ec9c4396dc95c40a37645c7c47d7bc8b26184'
             'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a'
             '45b911e592dd6c717e77ec4d8cbf844860bb7c29ace7a7170e7bf59c12e91bb4'
+            'c0807635ea60e5d8adf344ca50e39ab91322e984dda797a17efdc8ba19cc5dd5'
             'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279'
             '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3'
             '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d'
@@ -105,7 +126,9 @@ sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'b1f19084e9a9843dd8c457c55a8ea8319428428657d5363d35df64fb865a4eae'
             '92e6f4173074ac902c3fc397ea39a5ff6d5eb8645539645c0cd61b3d05ac83ca'
             '9ede98eceb69e9c93e25fdb2c567466963bdd2f81c0ecb9fb9e5107f6142ff26'
-            'f307d149ac9a48bbfd5ea678ff80457e31ae6f788ec8915f19f128d0bd966d65')
+            '8662089b720681f25068ab479da00790d4e7b168131ea6867ee8db55279c18e6'
+            '20d6086c639b170c941f272a4958ad3c7fbf506d919024883f5e3e6199dcde56')
+
 
 prepare() {
   cd "linux-${_basekernel}"
