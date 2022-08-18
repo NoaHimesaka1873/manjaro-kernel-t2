@@ -120,9 +120,6 @@ prepare() {
       patch -Np1 < "../$src"
   done
 
-  msg2 "0513-bootsplash"
-  git apply -p1 < "../0413-bootsplash.gitpatch"
-
   msg2 "add config"
   cp ../config .config
 	make olddefconfig
