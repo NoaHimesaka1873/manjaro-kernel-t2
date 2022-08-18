@@ -56,7 +56,7 @@ jobs:
          draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
          prerelease: ${{ contains(github.event.head_commit.message, '[prerel]') }}
          body: |
-           This release features Mahiro Oyama from [ONIMAI: I'm Now Your Sister!](https://kodansha.us/series/onimai-im-now-your-sister/), celebrating announcement of anime adaptation! 
+          This release features Mahiro Oyama from [ONIMAI: I'm Now Your Sister!](https://kodansha.us/series/onimai-im-now-your-sister/), celebrating announcement of anime adaptation! 
           Every major release will feature new anime/manga and minor releases will have different characters!
           Install packages with `sudo pacman -U <file>`, you can use urls or file paths.
       env:
