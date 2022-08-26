@@ -1,7 +1,7 @@
 acpi_call
 bbswitch
 #broadcom-wl
-#nvidia
+nvidia
 #nvidia-390xx
 #nvidia-470xx
 r8168
