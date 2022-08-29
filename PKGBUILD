@@ -5,7 +5,6 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 _basekernel=6.0
-_rc=rc2
 _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
