@@ -326,7 +326,7 @@
  		if (ret)
  			goto err_out;
 +		if (con_is_visible(vc) && softback_buf)
-++			fbcon_update_softback(vc);
++			fbcon_update_softback(vc);
  	} else if (con_is_visible(vc)
  		   && vc->vc_mode == KD_TEXT) {
  		fbcon_clear_margins(vc, 0);
