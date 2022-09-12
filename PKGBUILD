@@ -7,7 +7,7 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 pkgver=5.19.8
-pkgrel=1
+pkgrel=2
 _basekernel=5.19
 _basever=${_basekernel//.}
 _kernelname=-T2
@@ -123,6 +123,7 @@ prepare() {
   msg2 "add config"
   cp ../config .config
 	make olddefconfig
+	./scripts/config --module BT_HCIBCM4377
 	diff -u ../config .config || :
 
   if [ "${_kernelname}" != "" ]; then
