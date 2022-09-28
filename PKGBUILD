@@ -42,6 +42,10 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
   # Efi fixes
   2002-efi-Correct-Macmini-capitalisation-in-uefi-cert-quir.patch
 
+  2011-change-many-info-logs-to-debug.patch
+  2012-vhci-drop_endpoint-check-for-null-vdev.patch
+  2013-aaudio-set-the-card-driver-name-to-AppleT2x-channel-.patch
+
   # Apple SMC ACPI support
   3001-applesmc-convert-static-structures-to-drvdata.patch
   3002-applesmc-make-io-port-base-addr-dynamic.patch
@@ -83,6 +87,9 @@ sha256sums=('SKIP'
             'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a'
             '45b911e592dd6c717e77ec4d8cbf844860bb7c29ace7a7170e7bf59c12e91bb4'
             'c0807635ea60e5d8adf344ca50e39ab91322e984dda797a17efdc8ba19cc5dd5'
+            '32d3915b4d50cfc654dda53e65e633d1e99b6c98795cbb7416f1ae8fe1ea2321'
+            'b5959f15fb744a1c4ab02bb01b49ef214d2f56cb350dadee241a31a01765612c'
+            '515756555e7a6178f38c82bb1dbc2919aa9660ee8b9e158f3764948578dee92c'
             'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279'
             '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3'
             '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d'
