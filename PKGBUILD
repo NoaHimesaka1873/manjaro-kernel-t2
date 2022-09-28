@@ -6,8 +6,8 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-pkgver=5.19.10
-pkgrel=2
+pkgver=5.19.11
+pkgrel=1
 _basekernel=5.19
 _basever=${_basekernel//.}
 _kernelname=-T2
