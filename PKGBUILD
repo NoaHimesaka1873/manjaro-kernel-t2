@@ -5,19 +5,18 @@
 # Thomas Baechler <thomas@archlinux.org>
 
 _basekernel=6.0
-_rc=rc7
 _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.0.0rc7
+pkgver=6.0.0
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}-${_rc}.tar.gz"
+source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}.tar.gz"
         #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
@@ -46,8 +45,8 @@ source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}-${_rc}.tar.gz"
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
 
-sha256sums=('02a8c4ab25997be06d5aa21bd8661737b0deb9096b7ad3e72ec86f429261865d'
-            'e292cca649691917adfc25dbcdba199435c5b7e2e8fbb29348d0978066326f61'
+sha256sums=('f63602d33f9b98ab8abd1f668fe1debbb1eea28984e7218a0e051ac1d25aac37'
+            'e5ac6986c81b5fea10f5a150506f483fe8d6e0fb5b1d4e8ce9f2c19bed23b2c9'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             '02b035fa598f9e281b9b5b645809d1bcacfa189c733dc291b4305c77cde52960'
             '2c2c72e5f72cf306d38f91869619c6f808b5f694341eeba398de1b0919bf755b'
@@ -69,7 +68,7 @@ sha256sums=('02a8c4ab25997be06d5aa21bd8661737b0deb9096b7ad3e72ec86f429261865d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
-  cd "linux-${_basekernel}-${_rc}"
+  cd "linux-${_basekernel}"
 
   # add upstream patch
   #msg "add upstream patch"
@@ -107,7 +106,7 @@ prepare() {
 }
 
 build() {
-  cd "linux-${_basekernel}-${_rc}"
+  cd "linux-${_basekernel}"
 
   msg "build"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
@@ -119,7 +118,7 @@ package_linux60() {
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE)
 
-  cd "linux-${_basekernel}-${_rc}"
+  cd "linux-${_basekernel}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -158,7 +157,7 @@ package_linux60-headers() {
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
 
-  cd "linux-${_basekernel}-${_rc}"
+  cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
