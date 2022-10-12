@@ -9,15 +9,15 @@ _basever=${_basekernel//.}
 _kernelname=-MANJARO
 pkgbase=linux${_basever}
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.0.0
+pkgver=6.0.1
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}.tar.gz"
-        #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
+        "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
@@ -45,8 +45,9 @@ source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}.tar.gz"
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch')
 
-sha256sums=('f63602d33f9b98ab8abd1f668fe1debbb1eea28984e7218a0e051ac1d25aac37'
-            'e5ac6986c81b5fea10f5a150506f483fe8d6e0fb5b1d4e8ce9f2c19bed23b2c9'
+sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
+            '483447baa17bb08dfeb1b966c9b93bd0a7cac096d8086b0bbd09fb0d4968fe1e'
+            'aaa17f47f8f3f25ca434deb6cbd3b29094a4f324441a4602a3de7ce475cfdeea'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             '02b035fa598f9e281b9b5b645809d1bcacfa189c733dc291b4305c77cde52960'
             '2c2c72e5f72cf306d38f91869619c6f808b5f694341eeba398de1b0919bf755b'
@@ -71,8 +72,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  #msg "add upstream patch"
-  #patch -p1 -i "../patch-${pkgver}"
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
