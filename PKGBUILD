@@ -23,16 +23,6 @@ source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-mm_vmscan_fix_extreme_overreclaim_and_swap_floods.patch'
         '0103-Bluetooth_fix_deadlock_for_RFCOMM_sk_state_change.patch'
-        '0104-wifi_cfg80211_fix_u8_overflow_in_cfg80211_update_notlisted_nontrans.patch'
-        '0105-wifi_cfg80211_mac80211_reject_bad_MBSSID_elements.patch'
-        '0106-wifi_mac80211_fix_MBSSID_parsing_use-after-free.patch'
-        '0107-wifi_cfg80211_ensure_length_byte_is_present_beforeaccess.patch'
-        '0108-wifi_cfg80211_fix_BSS_refcounting_bugs.patch'
-        '0109-wifi_cfg80211_avoid_nontransmitted_BSS_list_corruption.patch'
-        '0110-wifi_mac80211_hwsim_avoid_mac80211_warning_on_bad_rate.patch'
-        '0111-wifi_mac80211_fix_crash_in_beacon_protection_for_P2P-device.patch'
-        '0112-wifi_cfg80211_update_hidden_BSSes_to_avoid_WARN_ON.patch'
-
         # MANJARO Patches
 
         # Bootsplash
@@ -55,19 +45,10 @@ source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 
 sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
             'a659e67693ded7c0968a10032f5b0fd9ec021ebf62d92a8fd256ae37f9b76408'
-            'ed42d684113cbf251f264198916b1f525f0e8e2a5a5390fbf9181d6b579e3727'
+            'd982c7a129ef53f2fe3f12e243fe835eb122028d756a714c04db5db676239636'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             'a75d2a2322c8cd99a6dc9945424fd9006e7a8f9d2793c0ae97ef931f2d54b9a5'
             'a8a2d8b402b2877df1a949a106c634b6c366dd33b954c4b735ce1d3778214169'
-            'b5127e61fae1a3fcd97e916cee525db170f18dd6b8ed56ab473eba7a236d4667'
-            '859eced459d709034e602d1fdc262a88de3c93e5eeaa5c346a2ef5b52c96c268'
-            'ce195be5ad0c888ef3f61dc36d9d01dd25e2c10ed80a654f4e916af1f6d33a36'
-            '197270d30c4c6faf0e0ed7d614fd9cd6329f3bb4f52b958c2416b23fa7745f16'
-            '696cbcb76706b97e155ad86c0a17774d81317b68f8004959ef5698aa4a61b57e'
-            '3af683458b106308d3f84497d8d113bdc527333eed8c642f3b305165e980d7d3'
-            '493cee62c40a8f1fe233b3e0fc3f2a98c6f9ccb2e56d139056f737e5d98f3f49'
-            '133d179a9039252739dd2dd2f8bcb695e57d394c2c168aa21bba06ee89f1fed8'
-            'fd3d15ec77108a26dbf4add6c8ca35557a0d881875f9f44a75301a7369afef29'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '8e5c147591d14300a59ed8354a9d0746cf78650256558b45f964ca76eaed9a9f'
