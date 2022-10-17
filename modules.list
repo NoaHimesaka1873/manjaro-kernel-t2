@@ -1,7 +1,19 @@
 acpi_call
 bbswitch
+<<<<<<< HEAD
+=======
+broadcom-wl
+nvidia
+#nvidia-390xx
+nvidia-470xx
+r8168
+rtl8723bu
+>>>>>>> linux60/master
 tp_smapi
 vhba-module
 virtualbox-modules
 zfs
+<<<<<<< HEAD
 
+=======
+>>>>>>> linux60/master
