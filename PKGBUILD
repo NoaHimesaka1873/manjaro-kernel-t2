@@ -186,7 +186,7 @@ build() {
   cd "linux-${_basekernel}"
 
   msg "build"
-  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
+  make LOCALVERSION= bzImage modules
 }
 
 package_linux60-t2() {
