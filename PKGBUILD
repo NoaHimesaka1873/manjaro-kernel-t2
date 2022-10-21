@@ -139,8 +139,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  #msg "add upstream patch"
-  #patch -p1 -i "../patch-${pkgver}"
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   for i in apple-bce apple-ibridge; do
     echo "Copying $i in to drivers/staging..."
