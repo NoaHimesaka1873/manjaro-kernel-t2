@@ -12,7 +12,7 @@ _kernelname=-WATATEN-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgver=6.0.2
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -56,7 +56,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 
   # Efi fixes
   2002-efi-Correct-Macmini-capitalisation-in-uefi-cert-quir.patch
-
+  2003-fix-nvram-write.patch
   # Misc BCE patches
   2011-change-many-info-logs-to-debug.patch
   2013-aaudio-set-the-card-driver-name-to-AppleT2x-channel-.patch
@@ -118,6 +118,7 @@ sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
             'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a'
             '45b911e592dd6c717e77ec4d8cbf844860bb7c29ace7a7170e7bf59c12e91bb4'
             'c0807635ea60e5d8adf344ca50e39ab91322e984dda797a17efdc8ba19cc5dd5'
+            '64ad589f5aff721249d49b4175cd0698c574f57b1296cc288815f2262b4493ec'
             '32d3915b4d50cfc654dda53e65e633d1e99b6c98795cbb7416f1ae8fe1ea2321'
             '515756555e7a6178f38c82bb1dbc2919aa9660ee8b9e158f3764948578dee92c'
             'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279'
