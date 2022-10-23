@@ -11,8 +11,8 @@ _basever=${_basekernel//.}
 _kernelname=-WATATEN-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.0.2
-pkgrel=2
+pkgver=6.0.3
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -90,7 +90,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 	)
 
 sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
-            'a659e67693ded7c0968a10032f5b0fd9ec021ebf62d92a8fd256ae37f9b76408'
+            'c2735c685dda548811190ecb1379f52cbdb866b198914a67030072a7d2191ca3'
             '41e3a586dc7ff6518b36e0de232a2897281dfae536d55638cb173fc55a108f4a'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             'a75d2a2322c8cd99a6dc9945424fd9006e7a8f9d2793c0ae97ef931f2d54b9a5'
