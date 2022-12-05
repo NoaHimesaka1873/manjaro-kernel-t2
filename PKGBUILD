@@ -23,7 +23,6 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
         'config'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
-        '0102-mm_vmscan_fix_extreme_overreclaim_and_swap_floods.patch'
         '0103-Bluetooth_fix_deadlock_for_RFCOMM_sk_state_change.patch'
         # MANJARO Patches
 
