@@ -1,101 +1,38 @@
 # Maintainer: Noa Himesaka <himesaka@noa.codes>
 # Manjaro maintainers:
-# Maintainer: Bernhard Landauer <bernhard@manjaro.org>
-# Maintainer: Philip Müller <philm[at]manjaro[dot]org>
+# Bernhard Landauer <bernhard@manjaro.org>
+# Philip Müller <philm[at]manjaro[dot]org>
 # Archlinux maintainers:
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-_basekernel=6.0
+_basekernel=6.1
+_rc=
 _basever=${_basekernel//.}
-_kernelname=-WATATEN-T2
+_kernelname=-Watanare-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.0.12
+pkgver=6.1.0
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        "https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+source=("https://git.kernel.org/torvalds/t/linux-${_basekernel}.tar.gz"
+        #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
-        # ARCH Patches
-        '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
-        '0103-Bluetooth_fix_deadlock_for_RFCOMM_sk_state_change.patch'
-        # MANJARO Patches
+        patches::git+https://github.com/t2linux/linux-t2-patches
+)
 
-        # Bootsplash
-        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
-        '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
-        '0303-revert-fbcon-remove-soft-scrollback-code.patch'
-        '0401-bootsplash.patch'
-        '0402-bootsplash.patch'
-        '0403-bootsplash.patch'
-        '0404-bootsplash.patch'
-        '0405-bootsplash.patch'
-        '0406-bootsplash.patch'
-        '0407-bootsplash.patch'
-        '0408-bootsplash.patch'
-        '0409-bootsplash.patch'
-        '0410-bootsplash.patch'
-        '0411-bootsplash.patch'
-        '0412-bootsplash.patch'
-        '0413-bootsplash.gitpatch'
-  # apple-bce, apple-ibridge
-  apple-bce::git+https://github.com/t2linux/apple-bce-drv#commit=6988ec2f08ed7092211540ae977f4ddb56d4fd49
-  apple-ibridge::git+https://github.com/Redecorating/apple-ib-drv#commit=467df9b11cb55456f0365f40dd11c9e666623bf3
-
-  1001-Put-apple-bce-and-apple-ibridge-in-drivers-staging.patch
-  1002-add-modalias-to-apple-bce.patch
-
-  # Fix some acpi errors
-  2001-fix-acpica-for-zero-arguments-acpi-calls.patch
-
-  # Efi fixes
-  # Misc BCE patches
-  2011-change-many-info-logs-to-debug.patch
-  2013-aaudio-set-the-card-driver-name-to-AppleT2x-channel-.patch
-
-  # Apple SMC ACPI support
-  3001-applesmc-convert-static-structures-to-drvdata.patch
-  3002-applesmc-make-io-port-base-addr-dynamic.patch
-  3003-applesmc-switch-to-acpi_device-from-platform.patch
-  3004-applesmc-key-interface-wrappers.patch
-  3005-applesmc-basic-mmio-interface-implementation.patch
-  3006-applesmc-fan-support-on-T2-Macs.patch
-  3007-applesmc-Add-iMacPro-to-applesmc_whitelist.patch
-
-  # T2 USB Touchpad support
-  4001-Input-bcm5974-Add-support-for-the-T2-Macs.patch
-
-  # Keyboard Layout fixes
-  5001-HID-apple-fix-key-translations-where-multiple-quirks.patch
-  5002-HID-apple-enable-APPLE_ISO_TILDE_QUIRK-for-the-keybo.patch
-
-  # Hack for i915 overscan issues
-  7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
-
-  # Broadcom WIFI device support
-  # https://github.com/AsahiLinux/linux/commits/bits/080-wifi
-  8001-asahilinux-wifi-patchset.patch
-
-  # Broadcom BCM4377 BT device support
-  # https://github.com/AsahiLinux/linux/commits/bluetooth-wip
-  8002-asahilinux-hci_bcm4377-patchset.patch
-
-	)
-
-sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
-            '7d6222ec959ed7760385394c4f8bd859cac18109c677c91a89e61998aa4914c6'
-            '41e3a586dc7ff6518b36e0de232a2897281dfae536d55638cb173fc55a108f4a'
+sha256sums=('6246ee76209fb1ff46ffcd67d0cc8029dec2ef929de32ef5460a7a5649583103'
+            '83db4bd06ef772855faa2ae03a130cf1cb8c16dcc2202d0c82531b8bf8f6bd11'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
-            'a8a2d8b402b2877df1a949a106c634b6c366dd33b954c4b735ce1d3778214169'
+            'a5a482a4d715f4d11a00f898de520effa01cce31faadd98b02cf10006a4ac8be'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
-            '8e5c147591d14300a59ed8354a9d0746cf78650256558b45f964ca76eaed9a9f'
-            '57ce3e0ba6bf400d36358a9d30589905f6e51bc037d7165f5a2658b6bdc86793'
+            '50f4ccc4aeb0ffb8ec648b90a84ff188dbfed5364075cf0c6045c5696caf6ca9'
+            'e95c4f988cb9337f6c1e3d8affbfe170bea18843f839a3334a38e0ec44ed9000'
             'a26b3abaec1cd5731bc8431fecb8b3eb0ba47c1992e614643320df14ff859556'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
             '1144d51e5eb980fceeec16004f3645ed04a60fac9e0c7cf88a15c5c1e7a4b89e'
@@ -107,41 +44,14 @@ sha256sums=('5c2443a5538de52688efb55c27ab0539c1f5eb58c0cfd16a2b9fbb08fd81788e'
             'cf06d959a53eff6d3c287327f1cb2a68346d725cfd1370bc7482a0edc75692fc'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
-            'SKIP'
-            'SKIP'
-            '4482f285a66a31561452c81f232ec9c4396dc95c40a37645c7c47d7bc8b26184'
-            'a3a43feaffccbcd119f4a1b4e1299ef07ae36ef9bffc17767bf10e447fa02a2a'
-            '45b911e592dd6c717e77ec4d8cbf844860bb7c29ace7a7170e7bf59c12e91bb4'
-            '32d3915b4d50cfc654dda53e65e633d1e99b6c98795cbb7416f1ae8fe1ea2321'
-            '515756555e7a6178f38c82bb1dbc2919aa9660ee8b9e158f3764948578dee92c'
-            'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279'
-            '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3'
-            '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d'
-            '62f6d63815d4843ca893ca76b84a9d32590a50358ca0962017ccd75a40884ba8'
-            '2827dab6eeb2d2a08034938024f902846b5813e967a0ea253dc1ea88315da383'
-            '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625'
-            'd4ca5a01da5468a1d2957b8eb4a819e1b867a3bcd1cd47389d7c9ac9154b5430'
-            'b1f19084e9a9843dd8c457c55a8ea8319428428657d5363d35df64fb865a4eae'
-            '7d27bd83133c2e883e854271c5f9f698c61196afc2922921675353303194ef2c'
-            '4db195e0bda5712e60a78266c1458037063e5debd646b08376c4700a27d4b4ef'
-            '9ede98eceb69e9c93e25fdb2c567466963bdd2f81c0ecb9fb9e5107f6142ff26'
-            'e27a4acdb9027a0652d558d619b5be3dc916d2472f3b4d01d10932fc6f35f8dc'
-            'fc22ff1285552a85148ec5c21a9e5d93f2420a806ebdc53894636ec5f17505a8')
+            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 
 prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  msg "add upstream patch"
-  patch -p1 -i "../patch-${pkgver}"
-
-  for i in apple-bce apple-ibridge; do
-    echo "Copying $i in to drivers/staging..."
-	# no need to copy .git/
-	mkdir drivers/staging/$i
-    cp -r $srcdir/$i/* drivers/staging/$i/
-  done
+  #msg "add upstream patch"
+  #patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
@@ -152,11 +62,20 @@ prepare() {
       patch -Np1 < "../$src"
   done
 
-  msg2 "add config"
+  t2linux_patches=$(ls $srcdir/patches | grep -e \.patch$)
+  mv $srcdir/patches/*.patch $srcdir/
+  local src
+  for src in "${source[@]}" $t2linux_patches; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    [[ $src = *.patch ]] || continue
+    echo "Applying patch $src..."
+    patch -Np1 < "../$src"
+  done
+
+  echo "Setting config..."
   cp ../config .config
-	make olddefconfig
-	./scripts/config --module BT_HCIBCM4377
-	diff -u ../config .config || :
+  cat $srcdir/patches/extra_config >> .config
 
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
@@ -181,15 +100,15 @@ build() {
   cd "linux-${_basekernel}"
 
   msg "build"
-  make LOCALVERSION= bzImage modules
+  make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux60-t2() {
-  pkgdesc="The ${pkgbase/linux/Linux} kernel and modules for Macs with T2"
-  depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27' 'apple-bcm-firmware' 'apple-t2-audio-config')
+package_linux61-t2() {
+  pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
+  depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" linux-t2 VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE)
-  replaces=(linux519-t2 linux518-t2 linux516-t2 linux515-t2)
+  replaces=("linux60-t2")
 
   cd "linux-${_basekernel}"
 
@@ -225,11 +144,11 @@ package_linux60-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux60-t2-headers() {
-  pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel for Macs with T2"
+package_linux61-t2-headers() {
+  pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
-  provides=("linux-headers=$pkgver" linux-t2-headers)
-  replaces=(linux519-t2-headers linux518-t2-headers linux516-t2-headers linux515-t2-headers)
+  provides=("linux-headers=$pkgver" "linux-t2-headers")
+  replaces=("linux60-t2-headers")
 
   cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
@@ -302,3 +221,4 @@ package_linux60-t2-headers() {
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
 }
+
