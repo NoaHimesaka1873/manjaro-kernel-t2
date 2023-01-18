@@ -29,7 +29,7 @@ sha256sums=('3e4d8e561da5703a205ae8d7b2bed6c5c64fc4299eebcbfd20481e63b57d5ee3'
             'SKIP')
 
 prepare() {
-  cd "linux-${_basekernel}"
+  cd "linux-${pkgver}"
 
   # add upstream patch
   #msg "add upstream patch"
