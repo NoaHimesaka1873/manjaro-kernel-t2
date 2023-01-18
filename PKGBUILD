@@ -19,15 +19,13 @@ url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        "https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
         'config'
         patches::git+https://github.com/t2linux/linux-t2-patches
 )
 
-sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '99e62d45750279e7992e271d63f4fbc428978a8cb66bbdee6d5bc2594586101a'
-            '9b6ad110bda5f99e4f0cb32aaaaf7d9109c3f5591ae6af9484877d8f1005a73c'
+sha256sums=('3e4d8e561da5703a205ae8d7b2bed6c5c64fc4299eebcbfd20481e63b57d5ee3'
+            '13dce2ecd9d0dd7025fdbd3f7a78505365eee8f32a7aaae3cb949201c1f31655'
             'SKIP')
 
 prepare() {
