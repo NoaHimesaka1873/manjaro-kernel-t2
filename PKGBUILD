@@ -79,7 +79,7 @@ prepare() {
 }
 
 build() {
-  cd "linux-${_basekernel}"
+  cd "linux-${pkgver}"
 
   msg "build"
   make LOCALVERSION= bzImage modules
@@ -92,7 +92,7 @@ package_linux61-t2() {
   provides=("linux=${pkgver}" linux-t2 VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE)
   replaces=("linux60-t2")
 
-  cd "linux-${_basekernel}"
+  cd "linux-${pkgver}"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
@@ -106,13 +106,13 @@ package_linux61-t2() {
 
   # Used by mkinitcpio to name the kernel
   echo "${pkgbase}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/pkgbase"
-  echo "${_basekernel}-${CARCH}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/kernelbase"
+  echo "${pkgver}-${CARCH}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/kernelbase"
 
   # add kernel version
   echo "${pkgver}-${pkgrel}-MANJARO x64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
 
   # make room for external modules
-  local _extramodules="extramodules-${_basekernel}${_kernelname:--MANJARO}"
+  local _extramodules="extramodules-${pkgver}${_kernelname:--MANJARO}"
   ln -s "../${_extramodules}" "${pkgdir}/usr/lib/modules/${_kernver}/extramodules"
 
   # add real version for building modules and running depmod from hook
@@ -132,7 +132,7 @@ package_linux61-t2-headers() {
   provides=("linux-headers=$pkgver" "linux-t2-headers")
   replaces=("linux60-t2-headers")
 
-  cd "linux-${_basekernel}"
+  cd "linux-${pkgver}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
