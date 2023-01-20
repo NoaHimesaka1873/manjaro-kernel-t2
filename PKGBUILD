@@ -19,7 +19,7 @@ url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
-source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
+source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         'config'
         patches::git+https://github.com/t2linux/linux-t2-patches
 )
