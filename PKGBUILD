@@ -12,7 +12,7 @@ _basever=${_basekernel//.}
 _kernelname=-Watanare-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.1.12
+pkgver=6.1.13
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -22,11 +22,11 @@ options=('!strip')
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
-        patches::git+https://github.com/t2linux/linux-t2-patches
+        patches::git+https://github.com/t2linux/linux-t2-patches#branch=6.1
 )
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '653bd24f8fe05a7daf502c535e49a0dafd195e2a7d66e5f57ed17e2e77be11f2'
+            '5ae5551eb50a9392f02ec5cc0c7f07fe7d98f9e80bc930a4904eb47b6c0217ec'
             '13dce2ecd9d0dd7025fdbd3f7a78505365eee8f32a7aaae3cb949201c1f31655'
             'SKIP')
 
