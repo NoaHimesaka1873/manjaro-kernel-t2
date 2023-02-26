@@ -12,7 +12,7 @@ _basever=${_basekernel//.}
 _kernelname=-Wataoshi-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.2.0
+pkgver=6.2.1
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -20,12 +20,13 @@ license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+        "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         patches::git+https://github.com/t2linux/linux-t2-patches#branch=6.1
 )
 
 sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
+            'f533d80e81ca77b0cad4bd989d6c628848c5ed42dbfae74d0cca736c7234b965'
             '13dce2ecd9d0dd7025fdbd3f7a78505365eee8f32a7aaae3cb949201c1f31655'
             'SKIP')
 
@@ -33,8 +34,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  #msg "add upstream patch"
-  #patch -p1 -i "../patch-${pkgver}"
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
