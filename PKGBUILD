@@ -22,7 +22,7 @@ options=('!strip')
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
-        patches::git+https://github.com/t2linux/linux-t2-patches#branch=6.1
+        patches::git+https://github.com/t2linux/linux-t2-patches
 )
 
 sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
