@@ -27,7 +27,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 
 sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
             'f533d80e81ca77b0cad4bd989d6c628848c5ed42dbfae74d0cca736c7234b965'
-            '13dce2ecd9d0dd7025fdbd3f7a78505365eee8f32a7aaae3cb949201c1f31655'
+            '2632653ec071483ac3c691c13f4538d3d03371260bbf402218254224634577f5'
             'SKIP')
 
 prepare() {
