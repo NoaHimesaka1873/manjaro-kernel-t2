@@ -6,13 +6,13 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-_basekernel=6.2
+_basekernel=6.1
 _rc=
 _basever=${_basekernel//.}
-_kernelname=-Wataoshi-T2
+_kernelname=-Watanare-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.2.1
+pkgver=6.1.14
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -87,7 +87,7 @@ build() {
   make LOCALVERSION= bzImage modules
 }
 
-package_linux62-t2() {
+package_linux61-t2() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
@@ -128,7 +128,7 @@ package_linux62-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux62-t2-headers() {
+package_linux61-t2-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver" "linux-t2-headers")
