@@ -25,9 +25,9 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
         patches::git+https://github.com/t2linux/linux-t2-patches
 )
 
-sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
-            'f533d80e81ca77b0cad4bd989d6c628848c5ed42dbfae74d0cca736c7234b965'
-            '13dce2ecd9d0dd7025fdbd3f7a78505365eee8f32a7aaae3cb949201c1f31655'
+sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
+            '197b3e0b38972ea403d857c5aaa6cb202677c8be484f8808812849b6721a01c5'
+            '19d0d49b1f545d59c8d56aaa3ee6991ad266fb7711b300c02e90fd9cbc79931b'
             'SKIP')
 
 prepare() {
