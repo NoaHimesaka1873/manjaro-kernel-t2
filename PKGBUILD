@@ -12,7 +12,7 @@ _basever=${_basekernel//.}
 _kernelname=-Watanare-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.1.18
+pkgver=6.1.20
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -26,8 +26,8 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 )
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'f105933993d8f44d7e2b4da9d7d631ada97c43f1d9198c05d39c15a0d59fc70b'
-            '19d0d49b1f545d59c8d56aaa3ee6991ad266fb7711b300c02e90fd9cbc79931b'
+            '7265d002ce38341e06c6ace50199eb36e8d6d73a1345e728741ed2eaadce2b0e'
+            'e0205327d435f519ecb7947c5544a8ec75b02e8327748323f61c3dc5fa096fd9'
             'SKIP')
 
 prepare() {
