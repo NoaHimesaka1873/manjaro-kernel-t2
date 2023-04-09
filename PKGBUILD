@@ -12,7 +12,7 @@ _basever=${_basekernel//.}
 _kernelname=-Wataoshi-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.2.9
+pkgver=6.2.10
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -26,7 +26,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
 )
 
 sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
-            '08c7b5963ada2b53a8528cb9dfc3a7ad66fcac5fbf1c4322c8606ccf5b6c08c3'
+            '399a93fbdf775bb62e6e2f1a36e3391dbf26f427c0a5bef58f028c6ce1966ab0'
             '237062bcff0654d5045df37cae901a4c82acf97e0d6d055e2a46a19961cbe31d'
             'SKIP')
 
