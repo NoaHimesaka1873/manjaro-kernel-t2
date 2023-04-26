@@ -6,13 +6,13 @@
 # Tobias Powalowski <tpowa@archlinux.org>
 # Thomas Baechler <thomas@archlinux.org>
 
-_basekernel=6.2
+_basekernel=6.3
 _rc=
 _basever=${_basekernel//.}
-_kernelname=-Wataoshi-T2
+_kernelname=-Painoko-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.2.12
+pkgver=6.3.0
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -20,13 +20,12 @@ license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+        #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         patches::git+https://github.com/t2linux/linux-t2-patches
 )
 
-sha256sums=('74862fa8ab40edae85bb3385c0b71fe103288bce518526d63197800b3cbdecb1'
-            'acf7860badb149a0450e617465abf0dd20d11af517f1b4b473c3154a92029186'
+sha256sums=('ba3491f5ed6bd270a370c440434e3d69085fcdd528922fa01e73d7657db73b1e'
             '237062bcff0654d5045df37cae901a4c82acf97e0d6d055e2a46a19961cbe31d'
             'SKIP')
 
@@ -34,8 +33,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  msg "add upstream patch"
-  patch -p1 -i "../patch-${pkgver}"
+  #msg "add upstream patch"
+  #patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
@@ -87,7 +86,7 @@ build() {
   make LOCALVERSION= bzImage modules
 }
 
-package_linux62-t2() {
+package_linux63-t2() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs')
   optdepends=('wireless-regdb: to set the correct wireless channels of your country')
@@ -128,7 +127,7 @@ package_linux62-t2() {
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
 }
 
-package_linux62-t2-headers() {
+package_linux63-t2-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver" "linux-t2-headers")
