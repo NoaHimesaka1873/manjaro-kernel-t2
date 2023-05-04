@@ -12,7 +12,7 @@ _basever=${_basekernel//.}
 _kernelname=-Painoko-T2
 pkgbase=linux${_basever}-t2
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgver=6.3.0
+pkgver=6.3.1
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -20,12 +20,13 @@ license=('GPL2')
 makedepends=(bc docbook-xsl libelf pahole git inetutils kmod xmlto cpio perl tar xz)
 options=('!strip')
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        #"https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+        "https://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         'config'
         patches::git+https://github.com/t2linux/linux-t2-patches
 )
 
 sha256sums=('ba3491f5ed6bd270a370c440434e3d69085fcdd528922fa01e73d7657db73b1e'
+            '49216a8d1d09f2e291b56a0e7cb4ea9bce0869719c7823011b3626e80f22f322'
             '0e8cc6e0a3c5735b8fa26a5472e88d1174127ce683e7d4afcb13f1a1ba9a02f3'
             'SKIP')
 
@@ -33,8 +34,8 @@ prepare() {
   cd "linux-${_basekernel}"
 
   # add upstream patch
-  #msg "add upstream patch"
-  #patch -p1 -i "../patch-${pkgver}"
+  msg "add upstream patch"
+  patch -p1 -i "../patch-${pkgver}"
 
   local src
   for src in "${source[@]}"; do
